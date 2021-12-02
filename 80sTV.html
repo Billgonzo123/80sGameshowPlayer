@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+    <div id="player"></div>
+    <script>
+        
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        function onYouTubeIframeAPIReady() {
+            var numPl = Math.floor((Math.random() * 50) + 1);
+            var player = new YT.Player("player", {
+                height: '390',
+                width: '640',
+                playerVars: {
+                    listType:'playlist',
+                    list:'PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe',
+                    index: numPl,
+                    autoplay: true,
+                    mute: 1,
+    },
+                events: {
+                    'onReady': function (event) {
+                        //event.target.cuePlaylist({list: "PLFgquLnL59anYA8FwzqNFMp3KMcbKwMaT"});
+                        //event.target.playVideo();
+                        setTimeout(function() {
+                            event.target.setShuffle({'shufflePlaylist' : true});
+                            event.target.setAutoplay({'shufflePlaylist' : true});
+                        }, 1000);
+                    }
+                }
+            });
+            
+        }
+    </script>
+
+</body>
+</html>
