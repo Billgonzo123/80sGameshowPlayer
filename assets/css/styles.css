@@ -1,8 +1,26 @@
 #channelNameDisplay{
- color:rgb(0, 182, 0);
+ color:rgba(0, 182, 0,.8);
  font-family: OCR A Std, monospace;
  position: fixed;
  top:30px;
- left:60px;
-
+ left:80px;
+ animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
 }
+
+@keyframes glitch {
+    from{
+       
+        filter: blur(2px);
+        transform: scale(1, 0.6);
+        transform: translate(1px, 0%);
+    }
+    to {
+     
+        filter: blur(1px);
+        transform: scale(1, 1);
+        transform: translate(0px, 0%);
+    
+    }
+    
+}
+
