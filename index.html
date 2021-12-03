@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="style-sheet" href='style.css'/>
+    <link rel="style-sheet" href='style.css' />
 </head>
+
 <body style="background-color:black; ">
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-    <div id="player" ></div>
+    <div id="player"></div>
     <script>
-        
+        if (!localStorage.getItem('channelNum10171615'))  {localStorage.setItem('channelNum10171615',0);};
+
+        let channel = ['PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe', 'PLhNec9tcvCfBir8KQxopOdDGxTMsXtj3Z'];
+        let num = localStorage.getItem('channelNum10171615');
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
 
@@ -27,26 +32,46 @@
                 height: '480',
                 width: '100%',
                 playerVars: {
-                    listType:'playlist',
-                    list:'PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe',
+                    listType: 'playlist',
+                    list: channel[num],
                     index: numPl,
                     autoplay: true,
                     mute: 0,
-    },
+                },
                 events: {
                     'onReady': function (event) {
                         //event.target.cuePlaylist({list: "PLFgquLnL59anYA8FwzqNFMp3KMcbKwMaT"});
                         //event.target.playVideo();
-                        setTimeout(function() {
-                            event.target.setShuffle({'shufflePlaylist' : true});
-                            event.target.setAutoplay({'shufflePlaylist' : true});
+                        setTimeout(function () {
+                            event.target.setShuffle({ 'shufflePlaylist': true });
+                            event.target.setAutoplay({ 'shufflePlaylist': true });
                         }, 1000);
                     }
                 }
             });
-            
+
         }
+
+        ///Check for channel change
+        document.addEventListener('keydown', function (event) {
+            var name = event.key;
+            var code = event.code;
+            //g: Ch-
+            //t: ch+
+            //f5: default refresh, no need to map
+            if (name === 't') {
+                if (num >= channel.length - 1) { num = 0; } else { num++; }
+            }
+            else if (name === 'g') {
+                if (num <= 0) { num = channel.length - 1 } else { num--; }
+
+            }
+            
+            localStorage.setItem('channelNum10171615',num);
+            location.reload();
+        });
     </script>
 
 </body>
+
 </html>
