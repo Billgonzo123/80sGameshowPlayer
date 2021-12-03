@@ -13,10 +13,29 @@
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
     <div id="player"></div>
     <script>
-        if (!localStorage.getItem('channelNum10171615'))  {localStorage.setItem('channelNum10171615',0);};
+        let rndIsSet = 0;
+        if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channelNum10171615', 0); };
 
-        let channel = ['PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe', 'PLhNec9tcvCfBir8KQxopOdDGxTMsXtj3Z'];
+        //create array of channels
+        let channel = [{ name: 'Gameshows80', list: 'PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe', episodes: 194, randPoint: 0 },
+        { name: 'ClassicGameshows', list: 'PLMK_6ky6NNPquQ8vAnN-qCIoHdW1lwpRq', episodes: 405, randPoint: 0 },
+        { name: 'PriceIsRight', list: 'playlist?list=PL7ds43SisJYrFx6DZL3RAWkZ-r2AKxEU3', episodes: 121, randPoint: 0 },
+        { name: 'Cartoons80', list: 'PLhNec9tcvCfBir8KQxopOdDGxTMsXtj3Z', episodes: 604, randPoint: 0 },
+        { name: 'Cartoons90', list: 'PLdWFJnovRkDvbewO8MJKNET2kvPQz00jA', episodes: 102, randPoint: 0 },
+        { name: 'UltimateCartoons', list: 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q', episodes: 5, randPoint: 1 },
+        { name: 'Kablam', list: 'PLUiXHUbyt3otcSGKiOCzZn4pFalAt3sFS', episodes: 48, randPoint: 0 },
+        { name: 'Recess', list: 'PL3panSrIeiNJZN_qyGZvhvtI4R-xKsEW8', episodes: 135, randPoint: 0 },
+        { name: 'Loony Tunes', list: 'PLZs0gQed9tMStrGoR2C58YOgQ-HclszH9', episodes: 155, randPoint: 0 },
+        { name: '80sTV', list: 'PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT', episodes: 507, randPoint: 0 },
+        { name: '90sTV', list: 'PLjygzGIObj8-Gmt1Zwy_Hv9DNGLqQ9khb', episodes: 36, randPoint: 0 },
+        { name: 'SitcomsMakeMeCring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 }
+
+        ];
+
+
         let num = localStorage.getItem('channelNum10171615');
+
+        let rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes) + 1);
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
 
@@ -24,16 +43,17 @@
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+        console.log(rndEpisodeNum);
         // 3. This function creates an <iframe> (and YouTube player)
         //    after the API code downloads.
         function onYouTubeIframeAPIReady() {
-            var numPl = Math.floor((Math.random() * 194) + 1);
+            var numPl = rndEpisodeNum;
             var player = new YT.Player("player", {
                 height: '480',
                 width: '100%',
                 playerVars: {
                     listType: 'playlist',
-                    list: channel[num],
+                    list: channel[num].list,
                     index: numPl,
                     autoplay: true,
                     mute: 0,
@@ -52,8 +72,10 @@
 
         }
 
-        ///Check for channel change
-        document.addEventListener('keydown', function (event) {
+        //////////
+    
+        ///Check for channel change/////
+        let element = document.addEventListener('keydown', function (event) {
             var name = event.key;
             var code = event.code;
             //g: Ch-
@@ -61,15 +83,19 @@
             //f5: default refresh, no need to map
             if (name === 't') {
                 if (num >= channel.length - 1) { num = 0; } else { num++; }
+                
             }
             else if (name === 'g') {
                 if (num <= 0) { num = channel.length - 1 } else { num--; }
 
             }
-            
-            localStorage.setItem('channelNum10171615',num);
+
+            localStorage.setItem('channelNum10171615', num);
             location.reload();
         });
+
+    
+
     </script>
 
 </body>
