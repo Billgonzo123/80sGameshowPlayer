@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="style-sheet" href='style.css'>
 </head>
 <body style="background-color:black;">
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -23,7 +24,7 @@
         function onYouTubeIframeAPIReady() {
             var numPl = Math.floor((Math.random() * 50) + 1);
             var player = new YT.Player("player", {
-                height: '650',
+                height: '480',
                 width: '100%',
                 playerVars: {
                     listType:'playlist',
