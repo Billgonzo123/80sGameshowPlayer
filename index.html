@@ -8,7 +8,6 @@
 </head>
 <body>
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-
     <div id="player"></div>
     <script>
         
@@ -24,7 +23,7 @@
         function onYouTubeIframeAPIReady() {
             var numPl = Math.floor((Math.random() * 50) + 1);
             var player = new YT.Player("player", {
-                height: '100%',
+                height: '650',
                 width: '100%',
                 playerVars: {
                     listType:'playlist',
