@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Document</title>
-    <link rel="style-sheet" href='style.css' />
+    
 </head>
 
 <body style="background-color:black; ">
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+    <img id="staticImage" src="static.gif" alt="tv Static" width="720" height="480" />
+    <h2 id="channelNameDisplay">Hello</h2>
     <div id="player"></div>
     <script>
+        let chDisp = document.getElementById('channelNameDisplay');
+        chDisp.style.display = "none";
         let rndIsSet = 0;
         if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channelNum10171615', 0); };
 
         //create array of channels
         let channel = [{ name: 'Gameshows80', list: 'PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe', episodes: 194, randPoint: 0 },
         { name: 'ClassicGameshows', list: 'PLMK_6ky6NNPquQ8vAnN-qCIoHdW1lwpRq', episodes: 405, randPoint: 0 },
-        { name: 'PriceIsRight', list: 'playlist?list=PL7ds43SisJYrFx6DZL3RAWkZ-r2AKxEU3', episodes: 121, randPoint: 0 },
+        { name: 'PriceIsRight', list: 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', episodes: 444, randPoint: 0 },
         { name: 'Cartoons80', list: 'PLhNec9tcvCfBir8KQxopOdDGxTMsXtj3Z', episodes: 604, randPoint: 0 },
         { name: 'Cartoons90', list: 'PLdWFJnovRkDvbewO8MJKNET2kvPQz00jA', episodes: 102, randPoint: 0 },
         { name: 'UltimateCartoons', list: 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q', episodes: 5, randPoint: 1 },
@@ -36,13 +40,16 @@
         let num = localStorage.getItem('channelNum10171615');
 
         let rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes) + 1);
+
+        //display ch name on screen
+        chDisp.textContent = channel[num].name; 
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
 
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+        console.log(channel[num].name);
         console.log(rndEpisodeNum);
         // 3. This function creates an <iframe> (and YouTube player)
         //    after the API code downloads.
@@ -72,8 +79,22 @@
 
         }
 
-        //////////
-    
+        //////////hide static///////
+        let timer = setInterval(
+            function () {
+                document.getElementById("staticImage").style.display = "none";
+                chDisp.style.display = "block";
+                clearInterval(timer);
+            }
+            , 1200);
+
+            let timer2 = setInterval(
+            function () {
+                
+                chDisp.style.display = "none";
+                clearInterval(timer2);
+            }
+            , 4000);
         ///Check for channel change/////
         let element = document.addEventListener('keydown', function (event) {
             var name = event.key;
@@ -83,7 +104,7 @@
             //f5: default refresh, no need to map
             if (name === 't') {
                 if (num >= channel.length - 1) { num = 0; } else { num++; }
-                
+
             }
             else if (name === 'g') {
                 if (num <= 0) { num = channel.length - 1 } else { num--; }
@@ -94,7 +115,7 @@
             location.reload();
         });
 
-    
+
 
     </script>
 

@@ -1,0 +1,8 @@
+#channelNameDisplay{
+ color:rgb(0, 182, 0);
+ font-family: OCR A Std, monospace;
+ position: fixed;
+ top:30px;
+ left:30px;
+
+}
