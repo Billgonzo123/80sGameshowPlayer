@@ -148,6 +148,7 @@
             //g: Ch-
             //t: ch+
             //f5: default refresh, no need to map
+            ///make this a switch
             if (name === 't') {
                 if (num >= channel.length - 1) { num = 0; refresh();} else { num++; refresh();}
 
@@ -156,7 +157,7 @@
                 if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
 
             }else if (name === 'y'){
-                if (listDisplay.style.display === "none"){listDisplay.style.display = 'block'; displayChannels();}
+                if (listDisplay.style.display === "none"){listDisplay.style.display = 'block';}
                 else{listDisplay.style.display = 'none';}
             }
 
