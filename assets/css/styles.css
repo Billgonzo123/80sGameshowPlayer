@@ -25,13 +25,13 @@
 @keyframes glitch {
     from{
        
-        filter: blur(2px);
+        filter: blur(1px);
         transform: scale(1, 0.6);
         transform: translate(1px, 0%);
     }
     to {
      
-        filter: blur(1px);
+        filter: blur(0px);
         transform: scale(1, 1);
         transform: translate(0px, 0%);
     
