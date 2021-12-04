@@ -50,13 +50,17 @@
         
         ];
 
-
+        let beginPlace = 0;
         let num = localStorage.getItem('channelNum10171615');
+        ////////////////////////////////////////////////////////////////////////////////////
+        
 
         let rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes) + 1);
 
         //display ch name on screen
         chDisp.textContent = channel[num].name; 
+        
+        if (channel[num].randPoint) {beginPlace=(Math.floor(Math.random()*8)*900)}
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
 
@@ -73,17 +77,23 @@
                 height: '480',
                 width: '720',
                 playerVars: {
+                    start: beginPlace,
+                    controls: 1,
+                    modestbranding: 1,
                     listType: 'playlist',
                     list: channel[num].list,
                     index: numPl,
                     autoplay: true,
                     mute: 0,
                 },
+                
                 events: {
                     'onReady': function (event) {
+
                         //event.target.cuePlaylist({list: "PLFgquLnL59anYA8FwzqNFMp3KMcbKwMaT"});
                         //event.target.playVideo();
                         setTimeout(function () {
+                            
                             event.target.setShuffle({ 'shufflePlaylist': true });
                             event.target.setAutoplay({ 'shufflePlaylist': true });
                         }, 1000);
@@ -91,8 +101,9 @@
                 }
             });
 
-        }
-
+        } 
+        
+     
         //////////hide static///////
         let timer = setInterval(
             function () {
@@ -105,6 +116,7 @@
 
             let timer2 = setInterval(
             function () {
+               
                 
                 chDisp.style.display = "none";
                 clearInterval(timer2);
