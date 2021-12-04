@@ -21,7 +21,7 @@
     <script>
         let sound = document.getElementById('audioPlayer');
         let chDisp = document.getElementById('channelNameDisplay');
-        chDisp.style.display = "none";
+        chDisp.style.display = "block";
         let rndIsSet = 0;
         if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channelNum10171615', 0); };
 
@@ -98,7 +98,7 @@
             function () {
                 document.getElementById("staticImage").style.display = "none";
                 sound.pause();
-                chDisp.style.display = "block";
+                
                 clearInterval(timer);
             }
             , 3000);
