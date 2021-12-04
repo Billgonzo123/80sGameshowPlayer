@@ -10,19 +10,26 @@
 </head>
 
 <body style="background-color:black; ">
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+  
     <audio id="audioPlayer" autoplay>
         <source src="staticSound.ogg" type="audio/ogg">
       
       </audio>
     <img id="staticImage" src="static.gif" alt="tv Static" width="720" height="480" />
     <h2 id="channelNameDisplay">Hello</h2>
+    <div id="chListDisp">
+        <ol id="chList">
+
+        </ol>
+    </div>
     <div id="player"></div>
     <script>
         let sound = document.getElementById('audioPlayer');
+        let listDisplay = document.getElementById('chList');
+        listDisplay.style.display = 'none';
         let chDisp = document.getElementById('channelNameDisplay');
         chDisp.style.display = "block";
-        let rndIsSet = 0;
+       
         if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channelNum10171615', 0); };
 
         //create array of channels
@@ -51,10 +58,16 @@
         
 
         
-        
-        
-        
         ];
+        //////////////put channe;s into list////////
+        for (i=0; i<channel.length; i++)
+            {
+                let li = document.createElement('li');
+                    li.textContent = channel[i].name;
+                    console.log(li.textContent);
+                    listDisplay.append(li);
+            }
+            ///////////////////////////////
 
         let beginPlace = 0;
         let num = localStorage.getItem('channelNum10171615');
@@ -142,11 +155,14 @@
             else if (name === 'g') {
                 if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
 
+            }else if (name === 'b'){
+                if (listDisplay.style.display === "none"){listDisplay.style.display = 'block'; displayChannels();}
+                else{listDisplay.style.display = 'none';}
             }
 
 
         });
-
+       
 function refresh(){
     localStorage.setItem('channelNum10171615', num);
             location.reload();
