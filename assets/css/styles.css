@@ -13,7 +13,7 @@
     list-style-type:none;
     border: 2px solid rgba(34, 33, 33, 0.7);
     color:rgba(0, 182, 0,.9);
-    background-color: rgba(100, 98, 98, 0.7);
+    background-color: rgba(100, 98, 98, 1);
     padding: 3px 5px 3px 5px;
     font-family: OCR A Std, monospace;
     position: fixed;
