@@ -35,6 +35,20 @@
     /*animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;*/
    }
 
+   #volume{
+    display:none;
+    list-style-type:none;
+    font-size: 30px;
+    font-weight: bold;
+    color:rgba(0, 182, 0,.9);
+    padding: 3px 5px 3px 5px;
+    font-family: OCR A Std, monospace;
+    position: fixed;
+    top:400px;
+    left:240px;
+    animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
+   }
+
 @keyframes glitch {
     from{
        
