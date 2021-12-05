@@ -35,17 +35,14 @@
     /*animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;*/
    }
 
-   #volume{
-    display:none;
-    list-style-type:none;
-    font-size: 30px;
-    font-weight: bold;
+   #chEntry{
     color:rgba(0, 182, 0,.9);
+    background-color: rgba(100, 98, 98, 0.7);
     padding: 3px 5px 3px 5px;
     font-family: OCR A Std, monospace;
     position: fixed;
-    top:400px;
-    left:240px;
+    top:30px;
+    left:80px;
     animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
    }
 

@@ -26,19 +26,22 @@
 
         </ol>
     </div>
-    <div id= "volume">Volume[-----]</div>
+    <h2 id="chEntry"></h2>
     <div id="player"></div>
     <script>
-        let sound = document.getElementById('audioPlayer');
-        let listDisplay = document.getElementById('chList');
-        let listDisplay2 = document.getElementById('chList2');
+        let channelBuffer = 0;
+        let n = 0;
+        const sound = document.getElementById('audioPlayer');
+        const channelEntry = document.getElementById('chEntry');
+        const listDisplay = document.getElementById('chList');
+        const listDisplay2 = document.getElementById('chList2');
         listDisplay.style.display = 'none';
         listDisplay2.style.display = 'none';
-        let chDisp = document.getElementById('channelNameDisplay');
+        const chDisp = document.getElementById('channelNameDisplay');
         chDisp.style.display = "block";
 
         if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channelNum10171615', 0); };
-
+        channelEntry.textContent = "";
         //create array of channels
         //randPoint specifies if a video collection has long multi episode videos. mod is how many 15min sections in those videos (hrs*4)
         let channel = [{ name: 'Ch: 1 - Gameshows80', list: 'PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe', episodes: 194, randPoint: 0, mod: 0 },
@@ -158,18 +161,42 @@
         let element = document.addEventListener('keydown', function (event) {
             var name = event.key;
             var code = event.code;
+            console.log(name);
             //g: Ch-
             //t: ch+
             //f5: default refresh, no need to map
+            ///Number Input////
+
             ///make this a switch
-            switch (name) {
-                case 't': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
-                    break;
-                case 'g': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
-                    break;
-                case 'y': if (listDisplay.style.display === "none") { listDisplay.style.display = 'block';  listDisplay2.style.display = 'block'; }
-                else { listDisplay.style.display = 'none';  listDisplay2.style.display = 'none'; }
-                    break;
+            if (isNaN(name)) {
+                switch (name) {
+                    case 't': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
+                        break;
+                    case 'g': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
+                        break;
+                    case 'y': if (listDisplay.style.display === "none") { listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
+                    else { listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
+                        break;
+                }
+
+            }
+            ///enter numbers for channel input
+            else {
+                chDisp.style.display = "none";
+                channelEntry.textContent += name;
+                name = 'none';
+                n++;
+                console.log("Press number: ", n);
+                if (n >= 2) {
+                    let nn = channelEntry.textContent;
+                    nn--;
+                    console.log(nn);
+                    if (nn >= channel.length) { channelEntry.textContent = ''; n=0}
+                    else {
+                        localStorage.setItem('channelNum10171615', nn);
+                        location.reload();
+                    }
+                }
 
             }
 
