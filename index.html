@@ -33,6 +33,7 @@
         let n = 0;
         const sound = document.getElementById('audioPlayer');
         const channelEntry = document.getElementById('chEntry');
+        channelEntry.style.display = 'none';
         const listDisplay = document.getElementById('chList');
         const listDisplay2 = document.getElementById('chList2');
         listDisplay.style.display = 'none';
@@ -182,17 +183,23 @@
             }
             ///enter numbers for channel input
             else {
+                channelEntry.style.display = 'block';
                 chDisp.style.display = "none";
                 channelEntry.textContent += name;
-                name = 'none';
+                name = '';
                 n++;
                 console.log("Press number: ", n);
+               
+
                 if (n >= 2) {
                     let nn = channelEntry.textContent;
-                    //subtract one to specify array index
-                    nn--;
+                //subtract one to specify array index
+                nn--;
+                    
                     console.log(nn);
+
                     if (nn >= channel.length) { 
+                        channelEntry.style.display = 'none';
                             channelEntry.textContent = '';
                              n=0;
                         }
