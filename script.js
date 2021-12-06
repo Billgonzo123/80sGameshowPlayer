@@ -121,7 +121,7 @@
                     break;
                 case 'PageDown': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
                     break;
-                case 'y': if (listDisplay.style.display === "none") { listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
+                case 'Home': if (listDisplay.style.display === "none") { listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
                 else { listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                     break;
             }
