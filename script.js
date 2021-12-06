@@ -255,16 +255,15 @@ function loadChannels() {
     { name: 'Ch: 12 - Pepper Ann', list: 'PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z', episodes: 160, randPoint: 0 },
     { name: 'Ch: 13 - Loony Tunes', list: 'PLZs0gQed9tMStrGoR2C58YOgQ-HclszH9', episodes: 155, randPoint: 0 },
     { name: "Ch: 14 - 80's TV", list: 'PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT', episodes: 507, randPoint: 0 },
-    { name: "Ch: 15 - 90's TV", list: 'PLjygzGIObj8-Gmt1Zwy_Hv9DNGLqQ9khb', episodes: 36, randPoint: 0 },
+    { name: "Ch: 15 - 90's TV", list: 'PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ', episodes: 285  , randPoint: 0 },
     { name: 'Ch: 16 - Computer Chronicles', list: 'PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL', episodes: 647, randPoint: 0 },
     { name: 'Ch: 17 - TechTV', list: 'PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8', episodes: 1, randPoint: 1 },
     { name: 'Ch: 18 - Xplay', list: 'PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu', episodes: 647, randPoint: 0 },
     { name: 'Ch: 19 - Sitcoms Make Me Cring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 },
     { name: 'Ch: 20 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 589, randPoint: 0 },
     { name: 'Ch: 21 - MST 3000', list: 'PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l', episodes: 177, randPoint: 0 },
-    { name: 'Ch: 22 - Movies', list: 'PLPGjCUKTGMf1EAGcw_aZojJ619shXtTLe', episodes: 76, randPoint: 0 }
-
-
+    { name: 'Ch: 22 - Movies', list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 914, randPoint: 0 },
+    
     ];
     return array;
 }
