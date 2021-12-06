@@ -98,7 +98,7 @@ clearTimeout(rndTimer);
 //display ch name on screen
 chDisp.textContent = channel[num].name;
 
-
+//---init video stream---//
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
@@ -223,7 +223,7 @@ let element = document.addEventListener('keydown', function (event) {
 
             
 
-            if (nn >= channel.length) {
+            if (nn >= channel.length || nn < 0) {
                 channelEntry.style.display = 'none';
                 channelEntry.textContent = '';
                 n = 0;
