@@ -23,6 +23,7 @@ vol = localStorage.getItem('channelNum10171999');
 ///need to do this for a glitch. have to run down first or up will be glitched
 volumeDown();
 volumeUp();
+sound.volume= (vol/100);
   
 channelEntry.textContent = "";
 //create array of channels
