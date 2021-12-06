@@ -108,17 +108,17 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads./////////////////////
 function onYouTubeIframeAPIReady() {
-    var numPl = rndEpisodeNum;
+    
     var player = new YT.Player("player", {
         height: '480',
         width: '720',
         playerVars: {
             start: beginPlace,
-            controls: 0,
+            controls: 1,
             modestbranding: 1,
             listType: 'playlist',
             list: channel[num].list,
-            index: numPl,
+            index: rndEpisodeNum,
             autoplay: true,
             mute: 0,
         },
@@ -147,12 +147,33 @@ function onYouTubeIframeAPIReady() {
 
 
                 }, 1000);
+            },
+
+            'onStateChange': function (event) {     
+                   ///if status is -1 (unstarted), this indicates we have moved to a new video in the playlist
+                if(player.getPlayerState() === -1 ) {  
+                        
+                    let rndTimerCh = setTimeout(function(){
+                        pageData.push(player.getPlaylistIndex());
+                        ///and save the array to local storage (each channel gets its own local storage slot)
+                        localStorage.setItem(num, JSON.stringify(pageData));
+                        
+                        //checks if rndEpisodeNum is the last possible number and resets the array if it is
+                        if (pageData.length > channel[num].episodes) {
+                            pageData = [num];
+                            localStorage.setItem(num, JSON.stringify(pageData));
+                        }   
+                    clearTimeout(rndTimerCh);
+                    },60000)
+                }
             }
         }
     });
 
 
 }
+
+
 
 
 //////////hide static and pause//////////////////
