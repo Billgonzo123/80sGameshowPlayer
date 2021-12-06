@@ -78,18 +78,22 @@ for (let i = 1; i < pageData.length; i++) {
         i = 0;
     }
 }
-
-///once new ch is found, push it into the array
-pageData.push(rndEpisodeNum);
-///and save the array to local storage (each channel gets its own local storage slot)
-localStorage.setItem(num, JSON.stringify(pageData));
-
-//checks if rndEpisodeNum is the last possible number and resets the array if it is
-if (pageData.length > channel[num].episodes) {
-    pageData = [num];
+///use timeout to wait and store the randum number until user has viewed the episode for a period of time
+let rndTimer = setTimeout(function(){
+    pageData.push(rndEpisodeNum);
+    ///and save the array to local storage (each channel gets its own local storage slot)
     localStorage.setItem(num, JSON.stringify(pageData));
-}
-//////////////////////////////////////////END RANDOM NUM CHECK//////////////////////////////////////////////////////
+    
+    //checks if rndEpisodeNum is the last possible number and resets the array if it is
+    if (pageData.length > channel[num].episodes) {
+        pageData = [num];
+        localStorage.setItem(num, JSON.stringify(pageData));
+    }   
+clearTimeout(rndTimer);
+},600000)
+///once new ch is found, push it into the array
+
+//---------------------------------------------------END RANDOM NUM CHECK-------------------------------------------------//
 
 //display ch name on screen
 chDisp.textContent = channel[num].name;
@@ -151,7 +155,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 
-//////////hide static//////////////////
+//////////hide static and pause//////////////////
 let timer = setInterval(
     function () {
         document.getElementById("staticImage").style.display = "none";
@@ -163,7 +167,6 @@ let timer = setInterval(
 
 let timer2 = setInterval(
     function () {
-
 
         chDisp.style.display = "none";
         clearInterval(timer2);
