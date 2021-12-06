@@ -29,13 +29,13 @@ channelEntry.textContent = "";
 //randPoint specifies if a video collection has long multi episode videos. mod is how many 15min sections in those videos (hrs*4)
 let channel = loadChannels();
 //////////////put channe;s into list////////
-for (i = 0; i < 20; i++) {
+for (i = 0; i < 15; i++) {
     let li = document.createElement('li');
     li.textContent = channel[i].name;
     console.log(li.textContent);
     listDisplay.append(li);
 }
-for (i = 20; i < channel.length; i++) {
+for (i = 15; i < channel.length; i++) {
     let li = document.createElement('li');
     li.textContent = channel[i].name;
     console.log(li.textContent);
@@ -146,8 +146,8 @@ let element = document.addEventListener('keydown', function (event) {
                 break;
             case 'PageDown': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
                 break;
-            case 'Home': if (listDisplay.style.display === "none") { listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
-            else { listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
+            case 'Home': if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
+            else {chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                 break;
             case 't': volumeUp();
                 break;
