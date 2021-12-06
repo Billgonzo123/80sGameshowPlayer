@@ -20,8 +20,8 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 | Number 0-9  |  Enter a channel  |
 |  F5 | Reload Page for new random show  |
 |  HOME | Display/Hide list of channels  |
-|Vol+| t|
-|Vol-|g|
+|t      |Vol+|
+|g     |Vol-|
 
 
 
