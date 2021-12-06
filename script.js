@@ -41,7 +41,7 @@
     //display ch name on screen
     chDisp.textContent = channel[num].name;
 
-    if (channel[num].randPoint) { beginPlace = (Math.floor(Math.random() * channel[num].mod) * 900) }
+
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
 
@@ -76,14 +76,28 @@
                     setTimeout(function () {
 
                         event.target.setShuffle({ 'shufflePlaylist': true });
-                        event.target.autoplay({ 'shufflePlaylist': true });
+
+                        //legnth is seconds
+                        let vidLength = Math.floor((player.getDuration()));
+                        //HOW MANY 15 MIN SLOTS EXISTS
+                         let multi = Math.floor((vidLength/600));
+                        //A RANDOM NUM FOR A 15 MION SLOT 
+                         let rnd = Math.floor(Math.random() * (multi));
+                      
+
+                         
+                        if (channel[num].randPoint) { beginPlace = rnd * 600; }
+                        player.seekTo(beginPlace,true);
+                        
+                       
                     }, 1000);
                 }
             }
         });
+     
 
     }
-
+    
 
     //////////hide static//////////////////
     let timer = setInterval(
