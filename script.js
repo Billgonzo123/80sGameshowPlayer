@@ -144,16 +144,16 @@ let element = document.addEventListener('keydown', function (event) {
     ///make this a switch
     if (isNaN(name)) {
         switch (name) {
-            case 'PageUp': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
+            case '+': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
                 break;
-            case 'PageDown': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
+            case '-': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
                 break;
-            case 'Home': if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
+            case '.': if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
             else {chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                 break;
-            case 't': volumeUp();
+            case '*': volumeUp();
                 break;
-            case 'g': volumeDown();
+            case '/': volumeDown();
                 break;
         }
 
