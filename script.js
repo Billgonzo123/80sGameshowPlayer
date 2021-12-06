@@ -18,6 +18,12 @@ const chDisp = document.getElementById('channelNameDisplay');
 chDisp.style.display = "block";
 
 if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channelNum10171615', 0); };
+if (!localStorage.getItem('channelNum10171999')) { localStorage.setItem('channelNum10171999', vol); };
+vol = localStorage.getItem('channelNum10171999');
+///need to do this for a glitch. have to run down first or up will be glitched
+volumeDown();
+volumeUp();
+  
 channelEntry.textContent = "";
 //create array of channels
 //randPoint specifies if a video collection has long multi episode videos. mod is how many 15min sections in those videos (hrs*4)
@@ -202,8 +208,9 @@ function volumeUp() {
         }
     }
     volEl.textContent += "]";
+    localStorage.setItem('channelNum10171999', vol);
     hideVol();
-
+return;
 }
 
 function volumeDown() {
@@ -220,8 +227,9 @@ function volumeDown() {
         }
     }
     volEl.textContent += "]";
+    localStorage.setItem('channelNum10171999', vol);
     hideVol();
-
+return;
 }
 
 
