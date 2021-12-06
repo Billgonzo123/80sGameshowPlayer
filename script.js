@@ -8,7 +8,6 @@ let vol = 45;
 let volTimeOut = 0;
 
 const sound = document.getElementById('audioPlayer');
-const sndSrc = document.getElementById('soundSrc');
 const channelEntry = document.getElementById('chEntry');
 channelEntry.style.display = 'none';
 const listDisplay = document.getElementById('chList');
@@ -24,7 +23,7 @@ vol = localStorage.getItem('channelNum10171999');
 ///need to do this for a glitch. have to run down first or up will be glitched
 volumeDown();
 volumeUp();
-sndSrc.volume= (vol/100);
+sound.volume= (vol/100);
   
 channelEntry.textContent = "";
 //create array of channels
@@ -211,8 +210,11 @@ function volumeUp() {
         }
     }
     volEl.textContent += "]";
+<<<<<<< HEAD
     sndSrc.volume= (vol/100);
     console.log("static: ",sndSrc.volume);
+=======
+>>>>>>> parent of e774cc9 (match vol state with static sound volume)
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
@@ -232,8 +234,11 @@ function volumeDown() {
         }
     }
     volEl.textContent += "]";
+<<<<<<< HEAD
     sndSrc.volume= (vol/100);
     console.log("static: ",sndSrc.volume);
+=======
+>>>>>>> parent of e774cc9 (match vol state with static sound volume)
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
