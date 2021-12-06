@@ -85,7 +85,10 @@ function onYouTubeIframeAPIReady() {
         events: {
             'onReady': function (event) {
                 //update vol every 100 ms
-                setInterval(function () { event.target.setVolume(vol); }, 100)
+                setInterval(function () { 
+                    event.target.setVolume(vol); 
+                    sndSrc.volume= (vol/100);
+                }, 100)
                 //event.target.cuePlaylist({list: "PLFgquLnL59anYA8FwzqNFMp3KMcbKwMaT"});
                 //event.target.playVideo();
                 setTimeout(function () {
