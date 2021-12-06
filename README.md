@@ -1,5 +1,5 @@
 # CRT Flash Back Machine
-##Description:  
+## Description:  
 
 
 Ever wish you could go back in time, to the "good-old-days" of tube TV's, predetermined television programming and unskippable commercials? CRT Flash Back Machine is designed to fill this empty void, and hit you with a healthy dose of nostalgia! View hundreds of vintage programming from the past century on your favorite old CRT television! Sit back and let the good times roll!
@@ -12,11 +12,11 @@ This program is specifically designed for (and quite literally dependent on) the
 
 Furthermore, and most importantly, you MUST configure your browser to allow autoPlay content video content. Due to the nature of this program, there is no user input to initiate the video player. The ultimate expiriance is had with a dedicated device that automattically boots into a web borwser with this program as its home page,which is why a linux based hobby computer is the best choice.
 
-##Controls
+## Controls
 | Key  |Action   |
 | ------------ | ------------ |
-|  PageDown |   Channel Up |
-|  PageDown |  Channel Down  |
+|  + |   Channel Up |
+|  - |  Channel Down  |
 | Number 0-9  |  Enter a channel  |
 |  F5 | Reload Page for new random show  |
 |  . | Display/Hide list of channels  |
