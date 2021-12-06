@@ -34,13 +34,11 @@ let channel = loadChannels();
 for (i = 0; i < 15; i++) {
     let li = document.createElement('li');
     li.textContent = channel[i].name;
-    console.log(li.textContent);
     listDisplay.append(li);
 }
 for (i = 15; i < channel.length; i++) {
     let li = document.createElement('li');
     li.textContent = channel[i].name;
-    console.log(li.textContent);
     listDisplay2.append(li);
 }
 ///////////////////////////////
@@ -214,6 +212,7 @@ function volumeUp() {
     }
     volEl.textContent += "]";
     sndSrc.volume= (vol/100);
+    console.log("static: ",sndSrc.volume);
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
@@ -234,6 +233,7 @@ function volumeDown() {
     }
     volEl.textContent += "]";
     sndSrc.volume= (vol/100);
+    console.log("static: ",sndSrc.volume);
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
