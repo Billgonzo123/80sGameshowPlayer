@@ -78,19 +78,18 @@ for (let i = 1; i < pageData.length; i++) {
         i = 0;
     }
 }
-  
+
 ///once new ch is found, push it into the array
-    pageData.push(rndEpisodeNum);
+pageData.push(rndEpisodeNum);
 ///and save the array to local storage (each channel gets its own local storage slot)
-    localStorage.setItem(num, JSON.stringify(pageData));
+localStorage.setItem(num, JSON.stringify(pageData));
 
 //checks if rndEpisodeNum is the last possible number and resets the array if it is
-if (pageData.length > channel[num].episodes)
-{
+if (pageData.length > channel[num].episodes) {
     pageData = [num];
     localStorage.setItem(num, JSON.stringify(pageData));
 }
-///////////////////////END RANDOM NUM CHECK//////////////////////////////////////////////////////
+//////////////////////////////////////////END RANDOM NUM CHECK//////////////////////////////////////////////////////
 
 //display ch name on screen
 chDisp.textContent = channel[num].name;
@@ -102,8 +101,6 @@ var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-console.log(channel[num].name);
-console.log(rndEpisodeNum);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads./////////////////////
 function onYouTubeIframeAPIReady() {
@@ -173,17 +170,23 @@ let timer2 = setInterval(
     }
     , 8000);
 
-/////////Check for channel change///////
+//----------------------------Check for button inputs START-----------------------------//
 let element = document.addEventListener('keydown', function (event) {
     var name = event.key;
     var code = event.code;
-    console.log(name);
-    //g: Ch-
-    //t: ch+
-    //f5: default refresh, no need to map
-    ///Number Input////
+    
 
-    ///make this a switch
+    /*
+    +   = Ch+
+    -   = Ch-
+    *   = Vol+
+    /   = Vol-
+    .   = Channel List
+    0-9 = Enter Channel
+    F5  = Refresh Page (default browser key)
+    */
+    
+    ///---Check if input is number or command key----///
     if (isNaN(name)) {
         switch (name) {
             case '+': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
@@ -200,14 +203,14 @@ let element = document.addEventListener('keydown', function (event) {
         }
 
     }
-    ///enter numbers for channel input
+    ///----------enter numbers for channel input--------///
     else {
         channelEntry.style.display = 'block';
         chDisp.style.display = "none";
         channelEntry.textContent += name;
         name = '';
         n++;
-        console.log("Press number: ", n);
+        
 
 
         if (n >= 2) {
@@ -215,7 +218,7 @@ let element = document.addEventListener('keydown', function (event) {
             //subtract one to specify array index
             nn--;
 
-            console.log(nn);
+            
 
             if (nn >= channel.length) {
                 channelEntry.style.display = 'none';
@@ -235,9 +238,9 @@ let element = document.addEventListener('keydown', function (event) {
 
 
 });
+//----------------------------Check for button inputs END-----------------------------//
 
-////MAIN ENDS HERE////
-
+//----------------------------Volume Functions START-----------------------------//
 function volumeUp() {
     clearTimeout(volTimeOut);
     volEl.style.display = 'block';
@@ -254,7 +257,7 @@ function volumeUp() {
     volEl.textContent += "]";
 
     sndSrc.volume = (vol / 100);
-    console.log("static: ", sndSrc.volume);
+    
 
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
@@ -277,7 +280,7 @@ function volumeDown() {
     volEl.textContent += "]";
 
     sndSrc.volume = (vol / 100);
-    console.log("static: ", sndSrc.volume);
+    
 
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
@@ -292,8 +295,9 @@ function hideVol() {
         return;
     }, 1500);
 }
+//----------------------------Volume Functions END-----------------------------//
 
-
+//----------------------------Initiate Functions-----------------------------//
 //////simply refreshes the page sfter saving the current channel////////////////
 function refresh() {
     localStorage.setItem('channelNum10171615', num);
