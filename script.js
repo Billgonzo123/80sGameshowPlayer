@@ -8,6 +8,7 @@ let vol = 45;
 let volTimeOut = 0;
 
 const sound = document.getElementById('audioPlayer');
+const sndSrc = document.getElementById('soundSrc');
 const channelEntry = document.getElementById('chEntry');
 channelEntry.style.display = 'none';
 const listDisplay = document.getElementById('chList');
@@ -23,7 +24,7 @@ vol = localStorage.getItem('channelNum10171999');
 ///need to do this for a glitch. have to run down first or up will be glitched
 volumeDown();
 volumeUp();
-sound.volume= (vol/100);
+sndSrc.volume= (vol/100);
   
 channelEntry.textContent = "";
 //create array of channels
@@ -209,6 +210,7 @@ function volumeUp() {
         }
     }
     volEl.textContent += "]";
+    sndSrc.volume= (vol/100);
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
@@ -228,6 +230,7 @@ function volumeDown() {
         }
     }
     volEl.textContent += "]";
+    sndSrc.volume= (vol/100);
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
