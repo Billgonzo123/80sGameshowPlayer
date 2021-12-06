@@ -4,7 +4,7 @@ let n = 0;
 
 let volEl = document.getElementById('volume');
 volEl.style.display = 'none';
-let vol = 49;
+let vol = 45;
 let volTimeOut = 0;
 
 const sound = document.getElementById('audioPlayer');
@@ -77,11 +77,11 @@ function onYouTubeIframeAPIReady() {
         events: {
             'onReady': function (event) {
                 //update vol every 100 ms
-                setInterval(function(){event.target.setVolume(vol);},100)
+                setInterval(function () { event.target.setVolume(vol); }, 100)
                 //event.target.cuePlaylist({list: "PLFgquLnL59anYA8FwzqNFMp3KMcbKwMaT"});
                 //event.target.playVideo();
                 setTimeout(function () {
-                    
+
                     event.target.setShuffle({ 'shufflePlaylist': true });
 
                     //legnth is seconds
@@ -188,38 +188,49 @@ let element = document.addEventListener('keydown', function (event) {
 
 ////MAIN ENDS HERE////
 
-function volumeUp(){
+function volumeUp() {
     clearTimeout(volTimeOut);
     volEl.style.display = 'block';
-    if (vol >= 100) {vol = 100;} else {vol += 5;}
-    volEl.textContent ="Volume [";
-    for (i=0;i<(vol);i+=5){
-        volEl.textContent+= "-";
+    if (vol >= 100) { vol = 100; } else { vol += 5; }
+    volEl.textContent = "Volume [";
+    for (i = 0; i < (vol); i += 5) {
+        switch (i) {
+            case 45: volEl.textContent += "|";
+                break;
+            default: volEl.textContent += "-";
+                break;
+        }
     }
-    volEl.textContent +="]";
+    volEl.textContent += "]";
     hideVol();
-    
+
 }
 
-function volumeDown(){
+function volumeDown() {
     clearTimeout(volTimeOut);
     volEl.style.display = 'block';
-    if (vol <= 0) {vol = 0;} else {vol -= 5;}
-    volEl.textContent ="Volume [";
-    for (i=0;i<(vol);i+=5){
-        
-        volEl.textContent+= "-";
+    if (vol <= 0) { vol = 0; } else { vol -= 5; }
+    volEl.textContent = "Volume [";
+    for (i = 0; i < (vol); i += 5) {
+        switch (i) {
+            case 45: volEl.textContent += "|";
+                break;
+            default: volEl.textContent += "-";
+                break;
+        }
     }
-    volEl.textContent +="]";
+    volEl.textContent += "]";
     hideVol();
-    
+
 }
 
-function hideVol(){
-    volTimeOut = setTimeout(function(){
+
+
+function hideVol() {
+    volTimeOut = setTimeout(function () {
         volEl.style.display = 'none';
         return;
-    },1500);
+    }, 1500);
 }
 
 
