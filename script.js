@@ -4,7 +4,7 @@ let n = 0;
 
 let volEl = document.getElementById('volume');
 volEl.style.display = 'none';
-let vol = 45;
+let vol = 50;
 let volTimeOut = 0;
 const sndSrc = document.getElementById('soundSrc');
 const sound = document.getElementById('audioPlayer');
@@ -22,7 +22,7 @@ if (!localStorage.getItem('channelNum10171999')) { localStorage.setItem('channel
 vol = localStorage.getItem('channelNum10171999');
 ///need to do this for a glitch. have to run down first or up will be glitched
 volumeDown();
-volumeUp();
+
 sound.volume= (vol/100);
   
 channelEntry.textContent = "";
