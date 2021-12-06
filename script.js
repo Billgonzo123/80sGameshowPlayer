@@ -6,7 +6,7 @@ let volEl = document.getElementById('volume');
 volEl.style.display = 'none';
 let vol = 45;
 let volTimeOut = 0;
-
+const sndSrc = document.getElementById('soundSrc');
 const sound = document.getElementById('audioPlayer');
 const channelEntry = document.getElementById('chEntry');
 channelEntry.style.display = 'none';
@@ -210,11 +210,10 @@ function volumeUp() {
         }
     }
     volEl.textContent += "]";
-<<<<<<< HEAD
+
     sndSrc.volume= (vol/100);
     console.log("static: ",sndSrc.volume);
-=======
->>>>>>> parent of e774cc9 (match vol state with static sound volume)
+
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
@@ -234,11 +233,10 @@ function volumeDown() {
         }
     }
     volEl.textContent += "]";
-<<<<<<< HEAD
+
     sndSrc.volume= (vol/100);
     console.log("static: ",sndSrc.volume);
-=======
->>>>>>> parent of e774cc9 (match vol state with static sound volume)
+
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
 return;
