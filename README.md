@@ -38,5 +38,6 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |Input 98| Clears all channel memory|  
 
 Note: Memory contains all previously watched episodes which are excluded when genrating random episodes.  
+The memory resets automatically when all episodes in a channel have been viewed
 
 ## [link](https://chriskurz098.github.io/80sGameshowPlayer/)
