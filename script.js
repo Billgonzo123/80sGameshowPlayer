@@ -116,7 +116,7 @@ function onYouTubeIframeAPIReady() {
         width: '720',
         playerVars: {
             start: beginPlace,
-            controls: 1,
+            controls: 0,
             modestbranding: 1,
             listType: 'playlist',
             list: channel[num].list,
