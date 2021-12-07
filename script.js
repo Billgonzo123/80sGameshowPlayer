@@ -78,19 +78,21 @@ for (let i = 1; i < pageData.length; i++) {
         i = 0;
     }
 }
+
+//-------------Old code that waited 10min. Now I check when episode ends and playlist index changes. Then save prev ep-------------////
 ///use timeout to wait and store the randum number until user has viewed the episode for a period of time
-let rndTimer = setTimeout(function(){
-    pageData.push(rndEpisodeNum);
-    ///and save the array to local storage (each channel gets its own local storage slot)
-    localStorage.setItem(num, JSON.stringify(pageData));
-    
-    //checks if rndEpisodeNum is the last possible number and resets the array if it is
-    if (pageData.length > channel[num].episodes) {
-        pageData = [num];
-        localStorage.setItem(num, JSON.stringify(pageData));
-    }   
-clearTimeout(rndTimer);
-},600000)
+// let rndTimer = setTimeout(function () {
+//     pageData.push(rndEpisodeNum);
+//     ///and save the array to local storage (each channel gets its own local storage slot)
+//     localStorage.setItem(num, JSON.stringify(pageData));
+
+//     //checks if rndEpisodeNum is the last possible number and resets the array if it is
+//     if (pageData.length > channel[num].episodes) {
+//         pageData = [num];
+//         localStorage.setItem(num, JSON.stringify(pageData));
+//     }
+//     clearTimeout(rndTimer);
+// }, 600000)
 ///once new ch is found, push it into the array
 
 //---------------------------------------------------END RANDOM NUM CHECK-------------------------------------------------//
@@ -108,7 +110,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads./////////////////////
 function onYouTubeIframeAPIReady() {
-    
+    let epNum = rndEpisodeNum;
     var player = new YT.Player("player", {
         height: '480',
         width: '720',
@@ -118,53 +120,81 @@ function onYouTubeIframeAPIReady() {
             modestbranding: 1,
             listType: 'playlist',
             list: channel[num].list,
-            index: rndEpisodeNum,
+            index: epNum,
             autoplay: true,
             mute: 0,
         },
 
         events: {
-            'onReady': function (event) {
-                //update vol every 100 ms
-                setInterval(function () {
-                    event.target.setVolume(vol);
+            'onReady': //when the video is ready
 
-                }, 100)
-
-                setTimeout(function () {
-
-                    event.target.setShuffle({ 'shufflePlaylist': true });
-
-                    //legnth is seconds
-                    let vidLength = Math.floor((player.getDuration()));
-                    //HOW MANY 15 MIN SLOTS EXISTS
-                    let multi = Math.floor((vidLength / 600));
-                    //A RANDOM NUM FOR A 15 MION SLOT 
-                    let rnd = Math.floor(Math.random() * (multi));
-
-                    if (channel[num].randPoint) { beginPlace = rnd * 600; }
-                    player.seekTo(beginPlace, true);
-
-
-                }, 1000);
-            },
-
-            'onStateChange': function (event) {     
-                   ///if status is -1 (unstarted), this indicates we have moved to a new video in the playlist
-                if(player.getPlayerState() === -1 ) {  
-                        
-                    let rndTimerCh = setTimeout(function(){
-                        pageData.push(player.getPlaylistIndex());
+                function (event) {
+                    console.log("Ep is should run: ", rndEpisodeNum);
+                    console.log("Ep running: ", player.getPlaylistIndex());
+                    //if the video is unavailable or blocked index will return -1
+                    if (player.getPlaylistIndex() < 0) {
+                        //if video is an error, push the index number represented my rndEpisodeNum-1
+                        //this only works with a newly random generated item
+                        pageData.push(rndEpisodeNum - 1);
                         ///and save the array to local storage (each channel gets its own local storage slot)
                         localStorage.setItem(num, JSON.stringify(pageData));
-                        
+                        refresh();
+                    }
+
+                    //update vol every 100 ms
+                    setInterval(function () {
+                        //constat update of volume
+                        event.target.setVolume(vol);
+
+                    }, 100)
+
+
+
+                    setTimeout(function () {
+
+                        // event.target.setShuffle({ 'shufflePlaylist': true });
+
+                        /*This calculates the video length and finds how many times the value is divisible by 10 mins (600s)*/
+                        //legnth is seconds
+                        let vidLength = Math.floor((player.getDuration()));
+                        //HOW MANY 15 MIN SLOTS EXISTS
+                        let multi = Math.floor((vidLength / 600));
+                        //A RANDOM NUM FOR A 15 MION SLOT 
+                        let rnd = Math.floor(Math.random() * (multi));
+                        /*Then we check if the selected channel wants to be set to a random point with randPoint = true
+                        and finds a random spot in the video in increments of 10mins (600s)*/
+                        if (channel[num].randPoint) { beginPlace = rnd * 600; }
+                        /*Then we apply that value to the vidoe player via "seekTo()".
+                         beginPlace default value is 0  so if randPoint isnt set it just starts at the beginning of the video*/
+                        player.seekTo(beginPlace, true);
+
+
+                    }, 1000);
+                },
+
+            'onStateChange': function (event) {
+
+
+                ///if status is -1 (unstarted), this indicates we have moved to a new video in the playlist
+                if (player.getPlayerState() === -1) {
+                    console.log("original Rnd Ch: ", rndEpisodeNum - 1);
+                    console.log("Last Ep: ", player.getPlaylistIndex() - 1);
+                    console.log("New Ep: ", player.getPlaylistIndex());
+
+                    //waits for 2secs before saving prev video to let player have time to switch states
+                    let j = setTimeout(function () {
+                        //add last episode to watched list array (pageData)
+                        pageData.push(player.getPlaylistIndex() - 1);
+                        ///and save the array to local storage (each channel gets its own local storage slot)
+                        localStorage.setItem(num, JSON.stringify(pageData));
+
                         //checks if rndEpisodeNum is the last possible number and resets the array if it is
                         if (pageData.length > channel[num].episodes) {
                             pageData = [num];
                             localStorage.setItem(num, JSON.stringify(pageData));
-                        }   
-                    clearTimeout(rndTimerCh);
-                    },60000)
+                        }
+                        clearTimeout(j);
+                    }, 2000);
                 }
             }
         }
@@ -198,7 +228,7 @@ let timer2 = setInterval(
 let element = document.addEventListener('keydown', function (event) {
     var name = event.key;
     var code = event.code;
-    
+
 
     /*
     +   = Ch+
@@ -209,7 +239,7 @@ let element = document.addEventListener('keydown', function (event) {
     0-9 = Enter Channel
     F5  = Refresh Page (default browser key)
     */
-    
+
     ///---Check if input is number or command key----///
     if (isNaN(name)) {
         switch (name) {
@@ -229,25 +259,52 @@ let element = document.addEventListener('keydown', function (event) {
     }
     ///----------enter numbers for channel input--------///
     else {
+        //we must clear this value if a system message is displayed
+        if (isNaN(channelEntry.textContent)) {channelEntry.textContent=''};
         channelEntry.style.display = 'block';
         chDisp.style.display = "none";
         channelEntry.textContent += name;
         name = '';
         n++;
-        
 
 
+        //if two numbers have been input
         if (n >= 2) {
+            
             let nn = channelEntry.textContent;
             //subtract one to specify array index
             nn--;
 
-            
+
 
             if (nn >= channel.length || nn < 0) {
-                channelEntry.style.display = 'none';
-                channelEntry.textContent = '';
-                n = 0;
+
+                  //if the chList is open, some number inputs can be used as special commands
+                if (listDisplay.style.display == "block") {
+                  //nn is decremented before hand so the input will be one less (ie, 99=98 or 00=-1)
+                    switch (nn) {
+                        case 98: 
+                            localStorage.removeItem(num);
+                            channelEntry.textContent = 'Channel Memory Cleared';
+                            n = 0;
+                            break;
+                        case 97:
+                            localStorage.clear();
+                            channelEntry.textContent = 'All Memory Cleared';
+                            n = 0;
+                            break;
+                        default:
+                            channelEntry.style.display = 'none';
+                            channelEntry.textContent = '';
+                            n = 0;
+                            break;
+                    }
+                }
+                else {
+                    channelEntry.style.display = 'none';
+                    channelEntry.textContent = '';
+                    n = 0;
+                }
             }
             else {
                 setInterval(function () {
@@ -268,7 +325,7 @@ let element = document.addEventListener('keydown', function (event) {
 function volumeUp() {
     clearTimeout(volTimeOut);
     volEl.style.display = 'block';
-    if (vol >= 100) { vol = 100; } else { vol += 5; }
+    (vol >= 100) ? vol = 100 : vol += 5;
     volEl.textContent = "Volume [";
     for (i = 0; i < (vol); i += 5) {
         switch (i) {
@@ -281,7 +338,7 @@ function volumeUp() {
     volEl.textContent += "]";
 
     sndSrc.volume = (vol / 100);
-    
+
 
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
@@ -291,7 +348,7 @@ function volumeUp() {
 function volumeDown() {
     clearTimeout(volTimeOut);
     volEl.style.display = 'block';
-    if (vol <= 0) { vol = 0; } else { vol -= 5; }
+    (vol <= 0) ? vol = 0 : vol -= 5;
     volEl.textContent = "Volume [";
     for (i = 0; i < (vol); i += 5) {
         switch (i) {
@@ -304,7 +361,7 @@ function volumeDown() {
     volEl.textContent += "]";
 
     sndSrc.volume = (vol / 100);
-    
+
 
     localStorage.setItem('channelNum10171999', vol);
     hideVol();
@@ -334,10 +391,10 @@ function loadChannels() {
     { name: 'Ch: 3 - Price Is Right', list: 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', episodes: 581, randPoint: 0 },
     { name: 'Ch: 4 - Jeopardy!', list: 'PLAzwm-_ugsYC6SsJMjKbzvE2nk0307yIn', episodes: 444, randPoint: 0 },
     { name: "Ch: 5 - Who's Line", list: 'PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn', episodes: 873, randPoint: 0 },
-    { name: "Ch: 6 - 80's Cartoons", list: 'PLhNec9tcvCfBir8KQxopOdDGxTMsXtj3Z', episodes: 604, randPoint: 0 },
-    { name: "Ch: 7 - 90's Cartoons", list: 'PLdWFJnovRkDvbewO8MJKNET2kvPQz00jA', episodes: 102, randPoint: 0 },
+    { name: "Ch: 6 - Cartoons Forever", list: 'PLo6LMGdjaTzIUwf2I-q_R1tG6Rig-DlIf', episodes: 1170, randPoint: 0 },
+    { name: "Ch: 7 - WB Cartoons", list: 'PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI', episodes: 431, randPoint: 0 },
     { name: 'Ch: 8 - Toonami Swim', list: 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q', episodes: 8, randPoint: 1 },
-    { name: 'Ch: 9 - Saturday Morning', list: 'PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7', episodes: 10, randPoint: 1 },
+    { name: 'Ch: 9 - Saturday Morning Experience', list: 'PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7', episodes: 11, randPoint: 1 },
     { name: 'Ch: 10 - Kablam', list: 'PLUiXHUbyt3otcSGKiOCzZn4pFalAt3sFS', episodes: 48, randPoint: 0 },
     { name: 'Ch: 11 - Recess', list: 'PL3panSrIeiNJZN_qyGZvhvtI4R-xKsEW8', episodes: 135, randPoint: 0 },
     { name: 'Ch: 12 - Pepper Ann', list: 'PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z', episodes: 160, randPoint: 0 },

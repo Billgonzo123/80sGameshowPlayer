@@ -31,6 +31,13 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |  *    |Vol+|
 |  /   |Vol-|
 
+## System Controls
+|While channel list is open|
+|------------------------------|
+|Input 99| Clears the memory of the current channel|
+|Input 98| Clears all channel memory|  
+Note: Memory contains all previously watched episodes which are excluded when genrating random episodes
+
 
 
 
