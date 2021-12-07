@@ -391,7 +391,7 @@ function loadChannels() {
     { name: 'Ch: 3 - Price Is Right', list: 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', episodes: 581, randPoint: 0 },
     { name: 'Ch: 4 - Jeopardy!', list: 'PLAzwm-_ugsYC6SsJMjKbzvE2nk0307yIn', episodes: 444, randPoint: 0 },
     { name: "Ch: 5 - Who's Line", list: 'PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn', episodes: 873, randPoint: 0 },
-    { name: "Ch: 6 - Cartoons Forever", list: 'PLo6LMGdjaTzIUwf2I-q_R1tG6Rig-DlIf', episodes: 1170, randPoint: 0 },
+    { name: "Ch: 6 - Cartoons Forever", list: 'PLo6LMGdjaTzIUwf2I-q_R1tG6Rig-DlIf', episodes: 1231, randPoint: 0 },
     { name: "Ch: 7 - WB Cartoons", list: 'PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI', episodes: 431, randPoint: 0 },
     { name: 'Ch: 8 - Toonami Swim', list: 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q', episodes: 8, randPoint: 1 },
     { name: 'Ch: 9 - Saturday Morning Experience', list: 'PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7', episodes: 11, randPoint: 1 },
