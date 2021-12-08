@@ -263,7 +263,7 @@ let element = document.addEventListener('keydown', function (event) {
     ///----------enter numbers for channel input--------///
     else {
         //we must clear this value if a system message is displayed
-        if (isNaN(channelEntry.textContent)) {channelEntry.textContent=''};
+        if (isNaN(channelEntry.textContent)) { channelEntry.textContent = '' };
         channelEntry.style.display = 'block';
         chDisp.style.display = "none";
         channelEntry.textContent += name;
@@ -273,7 +273,7 @@ let element = document.addEventListener('keydown', function (event) {
 
         //if two numbers have been input
         if (n >= 2) {
-            
+
             let nn = channelEntry.textContent;
             //subtract one to specify array index
             nn--;
@@ -282,11 +282,11 @@ let element = document.addEventListener('keydown', function (event) {
 
             if (nn >= channel.length || nn < 0) {
 
-                  //if the chList is open, some number inputs can be used as special commands
+                //if the chList is open, some number inputs can be used as special commands
                 if (listDisplay.style.display == "block") {
-                  //nn is decremented before hand so the input will be one less (ie, 99=98 or 00=-1)
+                    //nn is decremented before hand so the input will be one less (ie, 99=98 or 00=-1)
                     switch (nn) {
-                        case 98: 
+                        case 98:
                             localStorage.removeItem(num);
                             channelEntry.textContent = 'Channel Memory Cleared';
                             n = 0;
@@ -401,16 +401,15 @@ function loadChannels() {
     { name: 'Ch: 10 - Kablam', list: 'PLUiXHUbyt3otcSGKiOCzZn4pFalAt3sFS', episodes: 48, randPoint: 0 },
     { name: 'Ch: 11 - Recess', list: 'PL3panSrIeiNJZN_qyGZvhvtI4R-xKsEW8', episodes: 135, randPoint: 0 },
     { name: 'Ch: 12 - Pepper Ann', list: 'PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z', episodes: 160, randPoint: 0 },
-    { name: 'Ch: 13 - Loony Tunes', list: 'PLZs0gQed9tMStrGoR2C58YOgQ-HclszH9', episodes: 155, randPoint: 0 },
-    { name: "Ch: 14 - 80's TV", list: 'PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT', episodes: 507, randPoint: 0 },
-    { name: "Ch: 15 - 90's TV", list: 'PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ', episodes: 285, randPoint: 0 },
-    { name: 'Ch: 16 - Computer Chronicles', list: 'PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL', episodes: 647, randPoint: 0 },
-    { name: 'Ch: 17 - TechTV', list: 'PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8', episodes: 1, randPoint: 1 }, //no longer works
-    { name: 'Ch: 18 - Xplay', list: 'PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu', episodes: 647, randPoint: 0 },
-    { name: 'Ch: 19 - Sitcoms Make Me Cring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 },
-    { name: 'Ch: 20 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 589, randPoint: 0 },
-    { name: 'Ch: 21 - MST 3000', list: 'PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l', episodes: 177, randPoint: 0 },
-    { name: 'Ch: 22 - Movies', list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 914, randPoint: 0 },
+    { name: "Ch: 13 - 80's TV", list: 'PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT', episodes: 507, randPoint: 0 },
+    { name: "Ch: 14 - 90's TV", list: 'PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ', episodes: 285, randPoint: 0 },
+    { name: 'Ch: 15 - Computer Chronicles', list: 'PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL', episodes: 647, randPoint: 0 },
+    { name: 'Ch: 16 - TechTV', list: 'PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8', episodes: 1, randPoint: 1 }, //no longer works
+    { name: 'Ch: 17 - Xplay', list: 'PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu', episodes: 647, randPoint: 0 },
+    { name: 'Ch: 18 - Sitcoms Make Me Cring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 },
+    { name: 'Ch: 29 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 589, randPoint: 0 },
+    { name: 'Ch: 20 - MST 3000', list: 'PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l', episodes: 177, randPoint: 0 },
+    { name: 'Ch: 21 - Movies', list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 914, randPoint: 0 },
 
     ];
     return array;
