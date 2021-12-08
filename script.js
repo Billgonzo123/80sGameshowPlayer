@@ -129,7 +129,11 @@ function onYouTubeIframeAPIReady() {
             'onReady': //when the video is ready
 
                 function (event) {
-                    console.log("Ep is should run: ", rndEpisodeNum);
+                    //////////hide static and pause//////////////////
+                    document.getElementById("staticImage").style.display = "none";
+                    sound.pause();
+
+                    console.log("Ep is should run: ", rndEpisodeNum-1, epNum);
                     console.log("Ep running: ", player.getPlaylistIndex());
                     //if the video is unavailable or blocked index will return -1
                     if (player.getPlaylistIndex() < 0) {
@@ -207,14 +211,7 @@ function onYouTubeIframeAPIReady() {
 
 
 //////////hide static and pause//////////////////
-let timer = setInterval(
-    function () {
-        document.getElementById("staticImage").style.display = "none";
-        sound.pause();
 
-        clearInterval(timer);
-    }
-    , 3000);
 
 let timer2 = setInterval(
     function () {
