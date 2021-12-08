@@ -259,12 +259,10 @@ let element = document.addEventListener('keydown', function (event) {
             refresh();
             break;
             case '*':
-            case 'AudioVolumeUp':
-                volumeUp();
+                volumeUp(name);
                 break;
             case '/':
-            case 'AudioVolumeDown':
-                volumeDown();
+                volumeDown(name);
                 break;
         }
 
