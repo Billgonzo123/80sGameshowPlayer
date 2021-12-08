@@ -414,7 +414,7 @@ function loadChannels() {
     { name: 'Ch: 16 - TechTV', list: 'PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8', episodes: 1, randPoint: 1 }, //no longer works
     { name: 'Ch: 17 - Xplay', list: 'PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu', episodes: 647, randPoint: 0 },
     { name: 'Ch: 18 - Sitcoms Make Me Cring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 },
-    { name: 'Ch: 29 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 589, randPoint: 0 },
+    { name: 'Ch: 19 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 589, randPoint: 0 },
     { name: 'Ch: 20 - MST 3000', list: 'PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l', episodes: 177, randPoint: 0 },
     { name: 'Ch: 21 - Movies', list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 914, randPoint: 0 },
 
