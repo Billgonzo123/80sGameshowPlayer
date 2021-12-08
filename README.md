@@ -18,7 +18,7 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 - Saves epsiodes that the user has watched for at least 10min so they dont repeat
 - Can be controlled entirely by number keypad, allowing for use of wireless keypad as a simple remote
 - Refreshing the page generates a new episode
-
+- Added support for Air Mouse Remote MX3 Pro usb PC remote
 
 ## Controls
 | Key  |Action   |
