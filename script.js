@@ -228,7 +228,7 @@ let timer2 = setInterval(
 let element = document.addEventListener('keydown', function (event) {
     var name = event.key;
     var code = event.code;
-
+    console.log(name);
 
     /*
     +   = Ch+
@@ -243,19 +243,28 @@ let element = document.addEventListener('keydown', function (event) {
     ///---Check if input is number or command key----///
     if (isNaN(name)) {
         switch (name) {
-            case '+': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
+            case '+':
+            case 'PageUp': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
                 break;
-            case '-': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
+            case '-':
+            case 'PageDown': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
                 break;
-            case '.': if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
-            else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
+            case '.':
+            case ',':
+            case 'ArrowDown':
+                if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
+                else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                 break;
-            case ',': if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
-            else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
+            case 'BrowserBack':
+            refresh();
+            break;
+            case '*':
+            case 'AudioVolumeUp':
+                volumeUp();
                 break;
-            case '*': volumeUp();
-                break;
-            case '/': volumeDown();
+            case '/':
+            case 'AudioVolumeDown':
+                volumeDown();
                 break;
         }
 
