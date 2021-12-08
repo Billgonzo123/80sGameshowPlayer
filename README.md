@@ -23,11 +23,11 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 ## Controls
 | Key  |Action   |
 | ------------ | ------------ |
-|  + |   Channel Up |
-|  - |  Channel Down  |
+|  + PgUp |   Channel Up |
+|  - PgDwn|  Channel Down  |
 | Number 0-9  |  Enter a channel  |
 |  F5 | Reload Page for new random show  |
-|  . | Display/Hide list of channels  |
+|  . , Down | Display/Hide list of channels  |
 |  *    |Vol+|
 |  /   |Vol-|
 
