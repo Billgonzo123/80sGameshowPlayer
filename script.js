@@ -110,10 +110,12 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads./////////////////////
 function onYouTubeIframeAPIReady() {
+
     let epNum = rndEpisodeNum;
     var player = new YT.Player("player", {
         height: '480',
         width: '720',
+        host: 'http://www.youtube-nocookie.com',
         playerVars: {
             start: beginPlace,
             controls: 0,
@@ -121,25 +123,30 @@ function onYouTubeIframeAPIReady() {
             listType: 'playlist',
             list: channel[num].list,
             index: epNum,
+            
             autoplay: true,
             mute: 0,
+
         },
 
         events: {
+
             'onReady': //when the video is ready
 
                 function (event) {
+                    event.target.playVideo();
+
                     //////////hide static and pause//////////////////
                     document.getElementById("staticImage").style.display = "none";
                     sound.pause();
 
-                    console.log("Ep is should run: ", rndEpisodeNum-1, epNum);
+                    console.log("Ep should run: ", rndEpisodeNum - 1, epNum - 1);
                     console.log("Ep running: ", player.getPlaylistIndex());
                     //if the video is unavailable or blocked index will return -1
                     if (player.getPlaylistIndex() < 0) {
                         //if video is an error, push the index number represented my rndEpisodeNum-1
                         //this only works with a newly random generated item
-                        pageData.push(rndEpisodeNum - 1);
+                        pageData.push(epNum - 1);
                         ///and save the array to local storage (each channel gets its own local storage slot)
                         localStorage.setItem(num, JSON.stringify(pageData));
                         refresh();
@@ -154,8 +161,8 @@ function onYouTubeIframeAPIReady() {
 
 
 
-                    setTimeout(function () {
-
+                   let k =  setTimeout(function () {
+                        epNum = player.getPlaylistIndex();
                         // event.target.setShuffle({ 'shufflePlaylist': true });
 
                         /*This calculates the video length and finds how many times the value is divisible by 10 mins (600s)*/
@@ -171,13 +178,13 @@ function onYouTubeIframeAPIReady() {
                         /*Then we apply that value to the vidoe player via "seekTo()".
                          beginPlace default value is 0  so if randPoint isnt set it just starts at the beginning of the video*/
                         player.seekTo(beginPlace, true);
-
+                        clearTimeout(k);
 
                     }, 1000);
                 },
 
-            'onStateChange': function (event) {
 
+            'onStateChange': function (event) {
 
                 ///if status is -1 (unstarted), this indicates we have moved to a new video in the playlist
                 if (player.getPlayerState() === -1) {
@@ -209,10 +216,7 @@ function onYouTubeIframeAPIReady() {
 
 
 
-
-//////////hide static and pause//////////////////
-
-
+///mases sure ch dip hides
 let timer2 = setInterval(
     function () {
 
@@ -253,8 +257,8 @@ let element = document.addEventListener('keydown', function (event) {
                 else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                 break;
             case 'BrowserBack':
-            refresh();
-            break;
+                refresh();
+                break;
             case '*':
                 volumeUp(name);
                 break;
@@ -266,7 +270,7 @@ let element = document.addEventListener('keydown', function (event) {
     }
     ///----------enter numbers for channel input--------///
     else {
-        //we must clear this value if a system message is displayed
+        //we must clear this value if a system message is displayed (like Memory Cleared or whatever)
         if (isNaN(channelEntry.textContent)) { channelEntry.textContent = '' };
         channelEntry.style.display = 'block';
         chDisp.style.display = "none";
@@ -281,8 +285,6 @@ let element = document.addEventListener('keydown', function (event) {
             let nn = channelEntry.textContent;
             //subtract one to specify array index
             nn--;
-
-
 
             if (nn >= channel.length || nn < 0) {
 
