@@ -394,28 +394,29 @@ function refresh() {
     location.reload();
 }
 
+//Turn out Youtube iFrame API can only qure 200 videos at a time. So i will have to limit playlists to 200 and find a workaround
 function loadChannels() {
     const array = [{ name: 'Ch: 1 - Gameshows80', list: 'PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe', episodes: 194, randPoint: 0 },
-    { name: 'Ch: 2 - Classic Gameshows', list: 'PLMK_6ky6NNPquQ8vAnN-qCIoHdW1lwpRq', episodes: 405, randPoint: 0 },
-    { name: 'Ch: 3 - Price Is Right', list: 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', episodes: 581, randPoint: 0 },
-    { name: 'Ch: 4 - Jeopardy!', list: 'PLAzwm-_ugsYC6SsJMjKbzvE2nk0307yIn', episodes: 444, randPoint: 0 },
-    { name: "Ch: 5 - Who's Line", list: 'PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn', episodes: 873, randPoint: 0 },
-    { name: "Ch: 6 - Cartoons Forever", list: 'PLo6LMGdjaTzIUwf2I-q_R1tG6Rig-DlIf', episodes: 1231, randPoint: 0 },
-    { name: "Ch: 7 - WB Cartoons", list: 'PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI', episodes: 431, randPoint: 0 },
+    { name: 'Ch: 2 - Classic Gameshows', list: 'PLMK_6ky6NNPquQ8vAnN-qCIoHdW1lwpRq', episodes: 200, randPoint: 0 },
+    { name: 'Ch: 3 - Price Is Right', list: 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', episodes: 200, randPoint: 0 },
+    { name: 'Ch: 4 - Jeopardy!', list: 'PLAzwm-_ugsYC6SsJMjKbzvE2nk0307yIn', episodes: 200, randPoint: 0 },
+    { name: "Ch: 5 - Who's Line", list: 'PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn', episodes: 200, randPoint: 0 },
+    { name: "Ch: 6 - Cartoons Forever", list: 'PLo6LMGdjaTzIUwf2I-q_R1tG6Rig-DlIf', episodes: 200, randPoint: 0 },
+    { name: "Ch: 7 - WB Cartoons", list: 'PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI', episodes: 200, randPoint: 0 },
     { name: 'Ch: 8 - Toonami Swim', list: 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q', episodes: 8, randPoint: 1 },
     { name: 'Ch: 9 - Saturday Morning Experience', list: 'PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7', episodes: 11, randPoint: 1 },
     { name: 'Ch: 10 - Kablam', list: 'PLUiXHUbyt3otcSGKiOCzZn4pFalAt3sFS', episodes: 48, randPoint: 0 },
     { name: 'Ch: 11 - Recess', list: 'PL3panSrIeiNJZN_qyGZvhvtI4R-xKsEW8', episodes: 135, randPoint: 0 },
     { name: 'Ch: 12 - Pepper Ann', list: 'PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z', episodes: 160, randPoint: 0 },
-    { name: "Ch: 13 - 80's TV", list: 'PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT', episodes: 507, randPoint: 0 },
-    { name: "Ch: 14 - 90's TV", list: 'PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ', episodes: 285, randPoint: 0 },
+    { name: "Ch: 13 - 80's TV", list: 'PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT', episodes: 200, randPoint: 0 },
+    { name: "Ch: 14 - 90's TV", list: 'PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ', episodes: 200, randPoint: 0 },
     { name: 'Ch: 15 - Computer Chronicles', list: 'PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL', episodes: 647, randPoint: 0 },
     { name: 'Ch: 16 - TechTV', list: 'PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8', episodes: 1, randPoint: 1 }, //no longer works
-    { name: 'Ch: 17 - Xplay', list: 'PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu', episodes: 647, randPoint: 0 },
+    { name: 'Ch: 17 - Xplay', list: 'PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu', episodes: 200, randPoint: 0 },
     { name: 'Ch: 18 - Sitcoms Make Me Cring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 },
-    { name: 'Ch: 19 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 589, randPoint: 0 },
+    { name: 'Ch: 19 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 200, randPoint: 0 },
     { name: 'Ch: 20 - MST 3000', list: 'PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l', episodes: 177, randPoint: 0 },
-    { name: 'Ch: 21 - Movies', list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 914, randPoint: 0 },
+    { name: 'Ch: 21 - Movies', list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 200, randPoint: 0 },
 
     ];
     return array;
