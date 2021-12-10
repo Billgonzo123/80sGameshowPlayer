@@ -72,7 +72,7 @@ if (!localStorage.getItem(num)) {
 };
 
 pageData = JSON.parse(localStorage.getItem(num));
-listNum = JSON.parse(localStorage.getItem(num)[1]);
+
 
 //if all videos in a playlist have been played
 if (pageData.length - 2 >= channel[num].episodes) {
@@ -115,7 +115,8 @@ for (let i = 2; i < pageData.length; i++) {
 ///once new ch is found, push it into the array
 
 //---------------------------------------------------END RANDOM NUM CHECK-------------------------------------------------//
-
+console.log('Channel[num].list[listNum]: ', channel[num].list[listNum]);
+console.log('listNum: ',listNum);
 //display ch name on screen
 chDisp.textContent = channel[num].name;
 
@@ -137,7 +138,7 @@ function onYouTubeIframeAPIReady() {
         host: 'http://www.youtube-nocookie.com',
         playerVars: {
             start: beginPlace,
-            controls: 0,
+            controls: 1,
             modestbranding: 1,
             listType: 'playlist',
             list: channel[num].list[listNum],
@@ -206,8 +207,7 @@ function onYouTubeIframeAPIReady() {
 
             'onStateChange': function (event) {
                 //saves current episode to epNum
-                epNum = getPlaylistIndex();
-
+                epNum = rndEpisodeNum;
                 if (player.getPlaylistIndex() < 0) {
                     //if video is an error, push the index number represented my rndEpisodeNum-1
                     //this only works with a newly random generated item
@@ -216,25 +216,65 @@ function onYouTubeIframeAPIReady() {
                     localStorage.setItem(num, JSON.stringify(pageData));
                     refresh();
                 }
-                ///if status is -1 (unstarted), this indicates we have moved to a new video in the playlist
-                if (player.getPlayerState() === -1) {
+                    //check if there is another playlist to go to
+                    if (listNum >= channel[num].list.length) {
+                        //if not go back to 0
+                        listNum = 0;
+                        listNum = JSON.parse(localStorage.getItem(num)[1]);
+                    } else{
+                        //if there is go forward one playlist
+                        listNum++;
+                        listNum = JSON.parse(localStorage.getItem(num)[1]);
+                    }
+                
+                //add last episode to watched list array (pageData)
+                pageData.push(player.getPlaylistIndex() );
+                ///and save the array to local storage (each channel gets its own local storage slot)
+                localStorage.setItem(num, JSON.stringify(pageData));
 
-                    //waits for 2secs before saving prev video to let player have time to switch states
-                    let j = setTimeout(function () {
-                        //add last episode to watched list array (pageData)
-                        pageData.push(player.getPlaylistIndex() - 1);
-                        ///and save the array to local storage (each channel gets its own local storage slot)
-                        localStorage.setItem(num, JSON.stringify(pageData));
-
-                        //checks if rndEpisodeNum is the last possible number and resets the array if it is
-                        if (pageData.length > channel[num].episodes) {
-                            pageData = [num];
-                            localStorage.setItem(num, JSON.stringify(pageData));
-                        }
-                        clearTimeout(j);
-                    }, 2000);
+                //checks if rndEpisodeNum is the last possible number and resets the array if it is
+                if (pageData.length > channel[num].episodes) {
+                    pageData = [num];
+                    localStorage.setItem(num, JSON.stringify(pageData));
                 }
+                clearTimeout(j);
+
+                //if video ends. it must be the last item in the playlist
+                if (player.getPlayerState() === 0 ) {   if (pageData.length - 2 >= channel[num].episodes) {
+                
+                refresh();}
+                ///if status is -1 (unstarted) 0 (ended), this indicates we have moved to a new video in the playlist
+                // if (player.getPlayerState() === -1) {
+
+                //     //waits for 2secs before saving prev video to let player have time to switch states
+                //     let j = setTimeout(function () {
+                //         if (pageData.length - 2 >= channel[num].episodes) {
+                //             //check if there is another playlist to go to
+                //             if (listNum >= channel[num].list.length) {
+                //                 //if not go back to 0
+                //                 listNum = 0;
+                //                 listNum = JSON.parse(localStorage.getItem(num)[1]);
+                //             } else{
+                //                 //if there is go forward one playlist
+                //                 listNum++;
+                //                 listNum = JSON.parse(localStorage.getItem(num)[1]);
+                //             }
+                //         }
+                //         //add last episode to watched list array (pageData)
+                //         pageData.push(player.getPlaylistIndex() - 1);
+                //         ///and save the array to local storage (each channel gets its own local storage slot)
+                //         localStorage.setItem(num, JSON.stringify(pageData));
+
+                //         //checks if rndEpisodeNum is the last possible number and resets the array if it is
+                //         if (pageData.length > channel[num].episodes) {
+                //             pageData = [num];
+                //             localStorage.setItem(num, JSON.stringify(pageData));
+                //         }
+                //         clearTimeout(j);
+                //     }, 2000);
+                // }
             }
+        }
         }
     });
 
@@ -423,6 +463,7 @@ function refresh() {
     location.reload();
 }
 
+//Turn out Youtube iFrame API can only qure 200 videos at a time. So i will have to limit playlists to 200 and find a workaround
 function loadChannels() {
     const array = [{ name: 'Ch: 1 - Gameshows80', list: ['PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe'], episodes: 194, randPoint: 0 },
 
@@ -447,7 +488,8 @@ function loadChannels() {
     { name: 'Ch: 19 - MTV', list: ['PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8'], episodes: 200, randPoint: 0 },
     { name: 'Ch: 20 - MST 3000', list: ['PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l'], episodes: 177, randPoint: 0 },
     { name: 'Ch: 21 - Movies', list: ['PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2'], episodes: 200, randPoint: 0 },
-    { name: 'Ch: 22 - MultiPlaylistTest', list: ['PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2'], episodes: 914, randPoint: 0 },
+    { name: 'Ch: 22 - MultiPlaylistTest', list: ['PLo6LMGdjaTzJ4bLJqDG1SEheI4HKDfIqX','PLo6LMGdjaTzLA3eD8xe3bMq1JZGguK4P6'], episodes: 4, randPoint: 0 },
+
     ];
     return array;
 }
