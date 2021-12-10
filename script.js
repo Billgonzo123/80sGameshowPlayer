@@ -135,6 +135,7 @@ function onYouTubeIframeAPIReady() {
 
                 function (event) {
                     event.target.playVideo();
+                
 
                     //////////hide static and pause//////////////////
                     document.getElementById("staticImage").style.display = "none";
@@ -162,7 +163,7 @@ function onYouTubeIframeAPIReady() {
 
 
                     let k = setTimeout(function () {
-                        epNum = player.getPlaylistIndex();
+                        
                         // event.target.setShuffle({ 'shufflePlaylist': true });
 
                         /*This calculates the video length and finds how many times the value is divisible by 10 mins (600s)*/
@@ -185,13 +186,20 @@ function onYouTubeIframeAPIReady() {
 
 
             'onStateChange': function (event) {
+                //saves current episode to epNum
+                epNum = getPlaylistIndex();
 
+                if (player.getPlaylistIndex() < 0) {
+                    //if video is an error, push the index number represented my rndEpisodeNum-1
+                    //this only works with a newly random generated item
+                    pageData.push(epNum - 1);
+                    ///and save the array to local storage (each channel gets its own local storage slot)
+                    localStorage.setItem(num, JSON.stringify(pageData));
+                    refresh();
+                }
                 ///if status is -1 (unstarted), this indicates we have moved to a new video in the playlist
                 if (player.getPlayerState() === -1) {
-                    console.log("original Rnd Ch: ", rndEpisodeNum - 1);
-                    console.log("Last Ep: ", player.getPlaylistIndex() - 1);
-                    console.log("New Ep: ", player.getPlaylistIndex());
-
+                
                     //waits for 2secs before saving prev video to let player have time to switch states
                     let j = setTimeout(function () {
                         //add last episode to watched list array (pageData)
