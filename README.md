@@ -26,10 +26,10 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |  + PgUp |   Channel Up |
 |  - PgDwn|  Channel Down  |
 | Number 0-9  |  Enter a channel  |
-|  F5/Up | Reload Page for new random show  |
-|  . , Down | Display/Hide list of channels  |
-|  *    |Vol+|
-|  /   |Vol-|
+|  F5/Left | Reload Page for new random show  |
+|  . , Right | Display/Hide list of channels  |
+|  * Up   |Vol+|
+|  / Down  |Vol-|
 
 ## System Controls
 |While channel list is open| |
