@@ -123,7 +123,7 @@ function onYouTubeIframeAPIReady() {
             listType: 'playlist',
             list: channel[num].list,
             index: epNum,
-            
+
             autoplay: true,
             mute: 0,
 
@@ -161,7 +161,7 @@ function onYouTubeIframeAPIReady() {
 
 
 
-                   let k =  setTimeout(function () {
+                    let k = setTimeout(function () {
                         epNum = player.getPlaylistIndex();
                         // event.target.setShuffle({ 'shufflePlaylist': true });
 
@@ -252,17 +252,19 @@ let element = document.addEventListener('keydown', function (event) {
                 break;
             case '.':
             case ',':
-            case 'ArrowDown':
+            case 'ArrowRight':
                 if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
                 else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                 break;
-            case 'BrowserBack':
+            case 'ArrowLeft':
                 refresh();
                 break;
             case '*':
+            case "ArrowUp":
                 volumeUp(name);
                 break;
             case '/':
+            case "ArrowDown":
                 volumeDown(name);
                 break;
         }
