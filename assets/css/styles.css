@@ -21,7 +21,7 @@ html{
  top:30px;
  left:80px;
  animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
- z-index: 9996;
+ z-index: 9999;
 }
 
 #volume{
@@ -73,6 +73,7 @@ html{
     top:30px;
     left:80px;
     animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
+    z-index: 999999;
    }
 
 @keyframes glitch {
