@@ -17,18 +17,21 @@ listDisplay2.style.display = 'none';
 const chDisp = document.getElementById('channelNameDisplay');
 chDisp.style.display = "block";
 
+
 ///this will hold all of the channels to avoid repeatson refresh
 let pageData = []
 ///clast ch saved here
 if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channelNum10171615', 0); };
 ///volume and other data saved here
 if (!localStorage.getItem('channelNum10171999')) { localStorage.setItem('channelNum10171999', vol); };
-///check if there is saved page Data
-vol = localStorage.getItem('channelNum10171999');
 
-///need to do this for a glitch. have to run down first or up will be glitched
-volumeDown();
-volumeUp();
+if (!localStorage.getItem('overscan')) { localStorage.setItem('overscan', 1); };
+let vidWindow = document.querySelector('#player');
+let overscanSize = parseFloat(localStorage.getItem('overscan'));
+vidWindow.style.transform = "scale("+overscanSize+")";
+
+///check if there is saved page Data
+vol = parseInt(localStorage.getItem('channelNum10171999'));
 
 sound.volume = (vol / 100);
 
@@ -134,6 +137,11 @@ function onYouTubeIframeAPIReady() {
             'onReady': //when the video is ready
 
                 function (event) {
+                   
+
+                    vidWindow = document.querySelector('#player');
+                    overscanSize = parseFloat(localStorage.getItem('overscan'));
+                    vidWindow.style.transform = "scale(" + overscanSize + ")";
                     event.target.playVideo();
 
                     //////////hide static and pause//////////////////
@@ -261,11 +269,17 @@ let element = document.addEventListener('keydown', function (event) {
                 break;
             case '*':
             case "ArrowUp":
-                volumeUp(name);
+                if (listDisplay.style.display == "block") { overscan(name); }
+                else {
+                    volumeUp(name);
+                }
                 break;
             case '/':
             case "ArrowDown":
-                volumeDown(name);
+                if (listDisplay.style.display == "block") { overscan(name); }
+                else {
+                    volumeDown(name);
+                }
                 break;
         }
 
@@ -331,6 +345,28 @@ let element = document.addEventListener('keydown', function (event) {
 
 });
 //----------------------------Check for button inputs END-----------------------------//
+
+//---------------------------------OverscanSet-----------------------------------------------//
+function overscan(key) {
+
+    switch (key) {
+        case '*':
+        case "ArrowUp":
+            overscanSize += .01;
+            break;
+
+        case '/':
+        case "ArrowDown":
+            overscanSize -= .01;
+            break;
+    }
+    localStorage.setItem('overscan', overscanSize);
+    vidWindow.style.transform = "scale(" + overscanSize + ")";
+    console.log('Element: ', vidWindow);
+    console.log('Overscan: ', vidWindow.style.transform);
+
+}
+
 
 //----------------------------Volume Functions START-----------------------------//
 function volumeUp() {
