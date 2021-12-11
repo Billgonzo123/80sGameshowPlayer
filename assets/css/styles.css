@@ -11,6 +11,7 @@ html{
 #staticImage{
     width:800px;
     height:530px;
+    z-index: 9990;
 }
 #channelNameDisplay{
  color:rgba(0, 182, 0,.9);
