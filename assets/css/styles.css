@@ -5,7 +5,8 @@ html{
 }
 
 #player{
-    margin-top: -20px;
+    margin-top: 1020px;
+    z-index: 0;
 }
 
 #staticImage{

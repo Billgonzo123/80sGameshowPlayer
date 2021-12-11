@@ -29,7 +29,7 @@ if (!localStorage.getItem('overscan')) { localStorage.setItem('overscan', 1); };
 let vidWindow = document.querySelector('#player');
 let overscanSize = parseFloat(localStorage.getItem('overscan'));
 vidWindow.style.transform = "scale("+overscanSize+")";
-
+vidWindow.style.disply = "none";
 ///check if there is saved page Data
 vol = parseInt(localStorage.getItem('channelNum10171999'));
 
@@ -138,12 +138,12 @@ function onYouTubeIframeAPIReady() {
 
                 function (event) {
                    
-
+                   
                     vidWindow = document.querySelector('#player');
                     overscanSize = parseFloat(localStorage.getItem('overscan'));
                     vidWindow.style.transform = "scale(" + overscanSize + ")";
                     event.target.playVideo();
-
+                    vidWindow.style.marginTop  = "-20px";
                     //////////hide static and pause//////////////////
                     document.getElementById("staticImage").style.display = "none";
                     sound.pause();
