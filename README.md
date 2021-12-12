@@ -36,8 +36,8 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |---------------|---------------|
 |Input 99| Clears the memory of the current channel|
 |Input 98| Clears all channel memory|  
-|Up Arrow| Increase Overscan|
-|Down Arrow| Decrease Overscan|
+|Up/Down| Increase/Decrease Overscan|
+|Left/Righ| Horizontal Shift|
 
 Note: Memory contains all previously watched episodes which are excluded when genrating random episodes.  
 The memory resets automatically when all episodes in a channel have been viewed

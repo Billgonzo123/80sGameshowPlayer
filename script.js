@@ -26,8 +26,10 @@ if (!localStorage.getItem('channelNum10171615')) { localStorage.setItem('channel
 if (!localStorage.getItem('channelNum10171999')) { localStorage.setItem('channelNum10171999', vol); };
 
 if (!localStorage.getItem('overscan')) { localStorage.setItem('overscan', 1); };
+if (!localStorage.getItem('horizontalShift')) { localStorage.setItem('horizontalShift', 0); };
 let vidWindow = document.querySelector('#player');
 let overscanSize = parseFloat(localStorage.getItem('overscan'));
+let horShift = parseFloat(localStorage.getItem('horizontalShift'));
 vidWindow.style.transform = "scale(" + overscanSize + ")";
 vidWindow.style.disply = "none";
 ///check if there is saved page Data
@@ -142,6 +144,7 @@ function onYouTubeIframeAPIReady() {
                     vidWindow = document.querySelector('#player');
                     overscanSize = parseFloat(localStorage.getItem('overscan'));
                     vidWindow.style.transform = "scale(" + overscanSize + ")";
+                    vidWindow.style.marginLeft = horShift+"px";
                     event.target.playVideo();
                     vidWindow.style.marginTop = "-20px";
                     //////////hide static and pause//////////////////
@@ -270,12 +273,14 @@ let element = document.addEventListener('keydown', function (event) {
                 volumeDown(name);
                 break;
             case "ArrowUp":
-                if (listDisplay.style.display == "block") { overscan(name); }
-                break;
-
             case "ArrowDown":
+            case "ArrowLeft":
+            case "ArrowRight":
                 if (listDisplay.style.display == "block") { overscan(name); }
-                break;
+            break;
+
+
+
 
         }
 
@@ -353,11 +358,18 @@ function overscan(key) {
         case "ArrowDown":
             overscanSize -= .01;
             break;
+        case "ArrowLeft":
+            horShift -= 1;
+            break;
+        case "ArrowRight":
+            horShift += 1;
+            break;
     }
     localStorage.setItem('overscan', overscanSize);
-    vidWindow.style.transform = "scale(" + overscanSize + ")";
-    console.log('Element: ', vidWindow);
-    console.log('Overscan: ', vidWindow.style.transform);
+    localStorage.setItem('horizontalShift', horShift);
+    vidWindow.style.transform = "scale(" + overscanSize +")";
+    vidWindow.style.marginLeft = horShift+"px";
+
 
 }
 
