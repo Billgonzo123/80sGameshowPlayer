@@ -144,7 +144,7 @@ function onYouTubeIframeAPIReady() {
                     vidWindow = document.querySelector('#player');
                     overscanSize = parseFloat(localStorage.getItem('overscan'));
                     vidWindow.style.transform = "scale(" + overscanSize + ")";
-                    vidWindow.style.marginLeft = horShift+"px";
+                    vidWindow.style.marginLeft = horShift + "px";
                     event.target.playVideo();
                     vidWindow.style.marginTop = "-20px";
                     //////////hide static and pause//////////////////
@@ -160,7 +160,15 @@ function onYouTubeIframeAPIReady() {
                         pageData.push(epNum - 1);
                         ///and save the array to local storage (each channel gets its own local storage slot)
                         localStorage.setItem(num, JSON.stringify(pageData));
-                        refresh();
+                        if (!(pageData.length > channel[num].episodes)) {
+                            refresh();
+                        } else {
+                            channelEntry.style.whiteSpace = "pre";
+                            channelEntry.textContent = "Reset Channel Memory!\nEnter 99 at Channel List";
+                            channelEntry.style.display = "block";
+                        }
+
+
                     }
 
                     //update vol every 100 ms
@@ -277,6 +285,12 @@ let element = document.addEventListener('keydown', function (event) {
             case "ArrowLeft":
             case "ArrowRight":
                 if (listDisplay.style.display == "block") { overscan(name); }
+                break;
+            case "End":
+                pageData.push(rndEpisodeNum - 1);
+                ///and save the array to local storage (each channel gets its own local storage slot)
+                localStorage.setItem(num, JSON.stringify(pageData));
+                refresh();
             break;
 
 
@@ -367,8 +381,8 @@ function overscan(key) {
     }
     localStorage.setItem('overscan', overscanSize);
     localStorage.setItem('horizontalShift', horShift);
-    vidWindow.style.transform = "scale(" + overscanSize +")";
-    vidWindow.style.marginLeft = horShift+"px";
+    vidWindow.style.transform = "scale(" + overscanSize + ")";
+    vidWindow.style.marginLeft = horShift + "px";
 
 
 }
@@ -460,7 +474,12 @@ function loadChannels() {
     { name: 'Ch: 18 - Sitcoms Make Me Cring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 },
     { name: 'Ch: 19 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 200, randPoint: 0 },
     { name: 'Ch: 20 - MST 3000', list: 'PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l', episodes: 177, randPoint: 0 },
-    { name: 'Ch: 21 - Movies', list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 200, randPoint: 0 },
+    { name: "Ch: 21 - 90's B-Movies", list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 200, randPoint: 0 },
+    { name: "Ch: 22 - 80's B-Movies", list: 'PLKxdKKLx3iRQbB2m8NkfX6e-PwMvNI-Wl', episodes: 200, randPoint: 0 },
+    { name: "Ch: 23 - Free Movies", list: 'PLHPTxTxtC0ibVZrT2_WKWUl2SAxsKuKwx', episodes: 200, randPoint: 0 },
+    { name: "Ch: 24 - Vintage Movies", list: 'PLyMSG-Q0Oh8cr6AG1jbptCGW5P6n-_Szz', episodes: 129, randPoint: 0 },
+    { name: 'Ch: 25 - Scifi Movies', list: 'PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe', episodes: 73, randPoint: 0 },
+    { name: "Ch: 26 - Horror/SciFi Movies", list: 'PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL', episodes: 200, randPoint: 0 },
 
     ];
     return array;

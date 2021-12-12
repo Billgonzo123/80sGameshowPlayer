@@ -18,7 +18,9 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 - Saves epsiodes that the user has watched for at least 10min so they dont repeat
 - Can be controlled entirely by number keypad, allowing for use of wireless keypad as a simple remote
 - Refreshing the page generates a new episode
-- Added support for Air Mouse Remote MX3 Pro usb PC remote
+- -NEW- Added mapping support for Air Mouse Remote MX3 Pro usb PC remote
+- -NEW- Added controls overscan and horizintal shift
+- -NEW- Can now skip episode and remove it from random selection
 
 ## Controls
 | Key  |Action   |
@@ -26,16 +28,19 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |  + PgUp |   Channel Up |
 |  - PgDwn|  Channel Down  |
 | Number 0-9  |  Enter a channel  |
-|  F5 | Reload Page for new random show  |
-|  . , | Display/Hide list of channels  |
 |  *  |Vol+|
 |  / |Vol-|
+|  . , | Display/Hide list of channels  |
+|  F5 | Reload Page for new random show  |
+|End| Skip episode forever|
+
+
 
 ## System Controls
 |While channel list is open| |
 |---------------|---------------|
-|Input 99| Clears the memory of the current channel|
-|Input 98| Clears all channel memory|  
+|Input 99| Clears the Memory of the Current Channel|
+|Input 98| Clears all Channel Memory|  
 |Up/Down| Increase/Decrease Overscan|
 |Left/Righ| Horizontal Shift|
 
