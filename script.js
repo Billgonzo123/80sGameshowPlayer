@@ -62,7 +62,7 @@ let num = localStorage.getItem('channelNum10171615');
 //--------------------------------GENERATE RANDOM CHANNEL TO PLAY----------------------------------------------//
 
 ///find random episode
-let rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes) + 1);
+let rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes));
 
 //--------------------------------CHECK IF RANDOM CHANNEL HAS BEEN GENERATED-----------------------------------//
 
@@ -78,7 +78,7 @@ pageData = JSON.parse(localStorage.getItem(num));
 for (let i = 1; i < pageData.length; i++) {
     //if the ch has been generated before, make new number and start over (i=0)
     if (pageData[i] === rndEpisodeNum) {
-        rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes) + 1);
+        rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes));
         //start for loop over
         i = 0;
     }
@@ -116,7 +116,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //    after the API code downloads./////////////////////
 function onYouTubeIframeAPIReady() {
 
-    let epNum = rndEpisodeNum;
+    let epNum = rndEpisodeNum ;
     var player = new YT.Player("player", {
         height: '480',
         width: '720',
@@ -127,7 +127,7 @@ function onYouTubeIframeAPIReady() {
             modestbranding: 1,
             listType: 'playlist',
             list: channel[num].list,
-            index: epNum,
+            index: epNum+1, //this always subtracts one
 
             autoplay: true,
             mute: 0,
@@ -151,13 +151,13 @@ function onYouTubeIframeAPIReady() {
                     document.getElementById("staticImage").style.display = "none";
                     sound.pause();
 
-                    console.log("Ep should run: ", rndEpisodeNum - 1, epNum - 1);
+                    console.log("RndNumber: ", rndEpisodeNum  ,"realEpNumber: ", epNum);
                     console.log("Ep running: ", player.getPlaylistIndex());
                     //if the video is unavailable or blocked index will return -1
                     if (player.getPlaylistIndex() < 0) {
                         //if video is an error, push the index number represented my rndEpisodeNum-1
                         //this only works with a newly random generated item
-                        pageData.push(epNum - 1);
+                        pageData.push(epNum);
                         ///and save the array to local storage (each channel gets its own local storage slot)
                         localStorage.setItem(num, JSON.stringify(pageData));
                         if (!(pageData.length > channel[num].episodes)) {
@@ -204,13 +204,13 @@ function onYouTubeIframeAPIReady() {
 
 
             'onStateChange': function (event) {
-
-                ///if status is -1 (unstarted), this indicates we have moved to a new video in the playlist
-                if (player.getPlayerState() === -1) {
-                    console.log("original Rnd Ch: ", rndEpisodeNum - 1);
-                    console.log("Last Ep: ", player.getPlaylistIndex() - 1);
-                    console.log("New Ep: ", player.getPlaylistIndex());
-
+                console.log("original Rnd Ch: ", rndEpisodeNum );
+                console.log("Last Ep: ", player.getPlaylistIndex() - 1, epNum);
+                console.log("New Ep: ", player.getPlaylistIndex());
+                ///epNum keeps track of episode updates
+                if (epNum < player.getPlaylistIndex()) {
+                  
+                    epNum = player.getPlaylistIndex();
                     //waits for 2secs before saving prev video to let player have time to switch states
                     let j = setTimeout(function () {
                         //add last episode to watched list array (pageData)
@@ -287,7 +287,7 @@ let element = document.addEventListener('keydown', function (event) {
                 if (listDisplay.style.display == "block") { overscan(name); }
                 break;
             case "End":
-                pageData.push(rndEpisodeNum - 1);
+                pageData.push(rndEpisodeNum);
                 ///and save the array to local storage (each channel gets its own local storage slot)
                 localStorage.setItem(num, JSON.stringify(pageData));
                 refresh();
