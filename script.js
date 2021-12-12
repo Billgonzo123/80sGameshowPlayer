@@ -28,7 +28,7 @@ if (!localStorage.getItem('channelNum10171999')) { localStorage.setItem('channel
 if (!localStorage.getItem('overscan')) { localStorage.setItem('overscan', 1); };
 let vidWindow = document.querySelector('#player');
 let overscanSize = parseFloat(localStorage.getItem('overscan'));
-vidWindow.style.transform = "scale("+overscanSize+")";
+vidWindow.style.transform = "scale(" + overscanSize + ")";
 vidWindow.style.disply = "none";
 ///check if there is saved page Data
 vol = parseInt(localStorage.getItem('channelNum10171999'));
@@ -137,13 +137,13 @@ function onYouTubeIframeAPIReady() {
             'onReady': //when the video is ready
 
                 function (event) {
-                   
-                   
+
+
                     vidWindow = document.querySelector('#player');
                     overscanSize = parseFloat(localStorage.getItem('overscan'));
                     vidWindow.style.transform = "scale(" + overscanSize + ")";
                     event.target.playVideo();
-                    vidWindow.style.marginTop  = "-20px";
+                    vidWindow.style.marginTop = "-20px";
                     //////////hide static and pause//////////////////
                     document.getElementById("staticImage").style.display = "none";
                     sound.pause();
@@ -260,27 +260,23 @@ let element = document.addEventListener('keydown', function (event) {
                 break;
             case '.':
             case ',':
-            case 'ArrowRight':
                 if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
                 else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                 break;
-            case 'ArrowLeft':
-                refresh();
-                break;
             case '*':
-            case "ArrowUp":
-                if (listDisplay.style.display == "block") { overscan(name); }
-                else {
-                    volumeUp(name);
-                }
+                volumeUp(name);
                 break;
             case '/':
+                volumeDown(name);
+                break;
+            case "ArrowUp":
+                if (listDisplay.style.display == "block") { overscan(name); }
+                break;
+
             case "ArrowDown":
                 if (listDisplay.style.display == "block") { overscan(name); }
-                else {
-                    volumeDown(name);
-                }
                 break;
+
         }
 
     }
@@ -350,12 +346,10 @@ let element = document.addEventListener('keydown', function (event) {
 function overscan(key) {
 
     switch (key) {
-        case '*':
         case "ArrowUp":
             overscanSize += .01;
             break;
 
-        case '/':
         case "ArrowDown":
             overscanSize -= .01;
             break;

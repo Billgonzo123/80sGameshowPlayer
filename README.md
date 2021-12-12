@@ -26,16 +26,18 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |  + PgUp |   Channel Up |
 |  - PgDwn|  Channel Down  |
 | Number 0-9  |  Enter a channel  |
-|  F5/Left | Reload Page for new random show  |
-|  . , Right | Display/Hide list of channels  |
-|  * Up   |Vol+|
-|  / Down  |Vol-|
+|  F5 | Reload Page for new random show  |
+|  . , | Display/Hide list of channels  |
+|  *  |Vol+|
+|  / |Vol-|
 
 ## System Controls
 |While channel list is open| |
 |---------------|---------------|
 |Input 99| Clears the memory of the current channel|
 |Input 98| Clears all channel memory|  
+|Up Arrow| Increase Overscan|
+|Down Arrow| Decrease Overscan|
 
 Note: Memory contains all previously watched episodes which are excluded when genrating random episodes.  
 The memory resets automatically when all episodes in a channel have been viewed
