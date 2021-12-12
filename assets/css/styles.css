@@ -5,13 +5,13 @@ html{
 }
 
 #player{
-    margin-top: 1020px;
+    
     z-index: 0;
 }
 
 #staticImage{
-    width:800px;
-    height:530px;
+    width:100vw;
+    height:100vh;
     z-index: 9990;
 }
 #channelNameDisplay{
