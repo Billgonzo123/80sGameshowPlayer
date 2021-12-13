@@ -282,6 +282,7 @@ let element = document.addEventListener('keydown', function (event) {
                 break;
             case '.':
             case ',':
+            case 'Backspace':
                 if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
                 else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
                 break;
