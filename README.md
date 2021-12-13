@@ -32,6 +32,7 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |  / |Vol-|
 |  . , | Display/Hide list of channels  |
 |  F5 | Reload Page for new random show  |
+|Home| Sudo power down|
 |End| Skip episode forever|
 
 

@@ -1,6 +1,7 @@
 
 let channelBuffer = 0;
 let n = 0;
+let on = 1; //if the screen is "on" used for fake shutoff
 
 let volEl = document.getElementById('volume');
 volEl.style.display = 'none';
@@ -292,6 +293,9 @@ let element = document.addEventListener('keydown', function (event) {
                 localStorage.setItem(num, JSON.stringify(pageData));
                 refresh();
             break;
+            case "Home":
+                screenOff();
+                break;
 
 
 
@@ -361,6 +365,28 @@ let element = document.addEventListener('keydown', function (event) {
 });
 //----------------------------Check for button inputs END-----------------------------//
 
+//---------------------------------Fake Turn Off--------------------------------------//
+function screenOff(){
+    if (on){
+        on = 0;
+        vol=0;
+        document.getElementById("soundSrc").src = "TVoff.ogg";
+        sound.load();
+        sound.play();
+        vidWindow.style.animation = "powerOff .5s"
+        let offTimer = setInterval(function(){
+            vidWindow.remove();
+            clearInterval(offTimer);
+        }, 450);
+        //turn off
+    }
+    else{
+        vol= 50;
+        on = 1;
+        //turn back on
+        refresh();
+    }
+}
 //---------------------------------OverscanSet-----------------------------------------------//
 function overscan(key) {
 

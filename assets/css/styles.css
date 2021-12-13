@@ -95,3 +95,13 @@ html{
     
 }
 
+@keyframes powerOff {
+    
+       0% { transform: scale(1, 1);}
+       10% { transform: scale(.9, .005);}
+       50% { transform: scale(.01, .005);}
+       100% { transform: scale(0, 0);}
+       
+
+}
+
