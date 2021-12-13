@@ -426,7 +426,7 @@ function overscan(key) {
     }
     localStorage.setItem('overscan', overscanSize);
     localStorage.setItem('horizontalShift', horShift);
-    localStorage.setItem('verticakShift', verShift);
+    localStorage.setItem('verticalShift', verShift);
     vidWindow.style.transform = "scale(" + overscanSize + ")";
     vidWindow.style.marginLeft = horShift + "px";
     vidWindow.style.marginTop = verShift + "px";
