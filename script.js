@@ -373,7 +373,10 @@ function screenOff(){
         document.getElementById("soundSrc").src = "TVoff.ogg";
         sound.load();
         sound.play();
+
+        //do screen off animation
         vidWindow.style.animation = "powerOff .5s"
+        
         let offTimer = setInterval(function(){
             vidWindow.remove();
             clearInterval(offTimer);
@@ -506,6 +509,8 @@ function loadChannels() {
     { name: "Ch: 24 - Vintage Movies", list: 'PLyMSG-Q0Oh8cr6AG1jbptCGW5P6n-_Szz', episodes: 129, randPoint: 0 },
     { name: 'Ch: 25 - Scifi Movies', list: 'PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe', episodes: 73, randPoint: 0 },
     { name: "Ch: 26 - Horror/SciFi Movies", list: 'PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL', episodes: 200, randPoint: 0 },
+    { name: "Ch: 27 - Seaonal Flixs", list: 'PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S', episodes: 1, randPoint: 0 },
+    
 
     ];
     return array;
