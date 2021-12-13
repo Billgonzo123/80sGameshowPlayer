@@ -19,8 +19,8 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 - Can be controlled entirely by number keypad, allowing for use of wireless keypad as a simple remote
 - Refreshing the page generates a new episode
 - -NEW- Added mapping support for Air Mouse Remote MX3 Pro usb PC remote
-- -NEW- Added controls overscan and horizintal shift
 - -NEW- Can now skip episode and remove it from random selection
+- -NEW- Added controls overscan and horizintal/vertical shift
 
 ## Controls
 | Key  |Action   |
@@ -42,8 +42,8 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |---------------|---------------|
 |Input 99| Clears the Memory of the Current Channel|
 |Input 98| Clears all Channel Memory|  
-|Up/Down| Increase/Decrease Overscan|
-|Left/Righ| Horizontal Shift|
+|CH+/Ch-| Increase/Decrease Overscan|
+|Direction Keys| Horizontal/Vertical Shift|
 
 Note: Memory contains all previously watched episodes which are excluded when genrating random episodes.  
 The memory resets automatically when all episodes in a channel have been viewed

@@ -28,9 +28,12 @@ if (!localStorage.getItem('channelNum10171999')) { localStorage.setItem('channel
 
 if (!localStorage.getItem('overscan')) { localStorage.setItem('overscan', 1); };
 if (!localStorage.getItem('horizontalShift')) { localStorage.setItem('horizontalShift', 0); };
+if (!localStorage.getItem('verticalShift')) { localStorage.setItem('verticalShift', 0); };
 let vidWindow = document.querySelector('#player');
+vidWindow.style.display = "none";
 let overscanSize = parseFloat(localStorage.getItem('overscan'));
 let horShift = parseFloat(localStorage.getItem('horizontalShift'));
+let verShift = parseFloat(localStorage.getItem('verticalShift'));
 vidWindow.style.transform = "scale(" + overscanSize + ")";
 vidWindow.style.disply = "none";
 ///check if there is saved page Data
@@ -117,7 +120,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //    after the API code downloads./////////////////////
 function onYouTubeIframeAPIReady() {
 
-    let epNum = rndEpisodeNum ;
+    let epNum = rndEpisodeNum;
     var player = new YT.Player("player", {
         height: '480',
         width: '720',
@@ -128,7 +131,7 @@ function onYouTubeIframeAPIReady() {
             modestbranding: 1,
             listType: 'playlist',
             list: channel[num].list,
-            index: epNum+1, //this always subtracts one
+            index: epNum + 1, //this always subtracts one
 
             autoplay: true,
             mute: 0,
@@ -146,13 +149,14 @@ function onYouTubeIframeAPIReady() {
                     overscanSize = parseFloat(localStorage.getItem('overscan'));
                     vidWindow.style.transform = "scale(" + overscanSize + ")";
                     vidWindow.style.marginLeft = horShift + "px";
+                    vidWindow.style.marginTop = verShift + "px";
                     event.target.playVideo();
-                    vidWindow.style.marginTop = "-20px";
+                    vidWindow.style.display = "block";
                     //////////hide static and pause//////////////////
                     document.getElementById("staticImage").style.display = "none";
                     sound.pause();
 
-                    console.log("RndNumber: ", rndEpisodeNum  ,"realEpNumber: ", epNum);
+                    console.log("RndNumber: ", rndEpisodeNum, "realEpNumber: ", epNum);
                     console.log("Ep running: ", player.getPlaylistIndex());
                     //if the video is unavailable or blocked index will return -1
                     if (player.getPlaylistIndex() < 0) {
@@ -205,12 +209,12 @@ function onYouTubeIframeAPIReady() {
 
 
             'onStateChange': function (event) {
-                console.log("original Rnd Ch: ", rndEpisodeNum );
+                console.log("original Rnd Ch: ", rndEpisodeNum);
                 console.log("Last Ep: ", player.getPlaylistIndex() - 1, epNum);
                 console.log("New Ep: ", player.getPlaylistIndex());
                 ///epNum keeps track of episode updates
                 if (epNum < player.getPlaylistIndex()) {
-                  
+
                     epNum = player.getPlaylistIndex();
                     //waits for 2secs before saving prev video to let player have time to switch states
                     let j = setTimeout(function () {
@@ -265,10 +269,16 @@ let element = document.addEventListener('keydown', function (event) {
     if (isNaN(name)) {
         switch (name) {
             case '+':
-            case 'PageUp': if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); };
+            case 'PageUp':
+                if (listDisplay.style.display == "block") { overscan(name); } else {
+                    if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); }
+                }
                 break;
             case '-':
-            case 'PageDown': if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
+            case 'PageDown':
+                if (listDisplay.style.display == "block") { overscan(name); } else {
+                    if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
+                }
                 break;
             case '.':
             case ',':
@@ -292,7 +302,7 @@ let element = document.addEventListener('keydown', function (event) {
                 ///and save the array to local storage (each channel gets its own local storage slot)
                 localStorage.setItem(num, JSON.stringify(pageData));
                 refresh();
-            break;
+                break;
             case "Home":
                 screenOff();
                 break;
@@ -366,25 +376,25 @@ let element = document.addEventListener('keydown', function (event) {
 //----------------------------Check for button inputs END-----------------------------//
 
 //---------------------------------Fake Turn Off--------------------------------------//
-function screenOff(){
-    if (on){
+function screenOff() {
+    if (on) {
         on = 0;
-        vol=0;
+        vol = 0;
         document.getElementById("soundSrc").src = "TVoff.ogg";
         sound.load();
         sound.play();
 
         //do screen off animation
         vidWindow.style.animation = "powerOff .5s"
-        
-        let offTimer = setInterval(function(){
+
+        let offTimer = setInterval(function () {
             vidWindow.remove();
             clearInterval(offTimer);
         }, 450);
         //turn off
     }
-    else{
-        vol= 50;
+    else {
+        vol = 50;
         on = 1;
         //turn back on
         refresh();
@@ -394,11 +404,11 @@ function screenOff(){
 function overscan(key) {
 
     switch (key) {
-        case "ArrowUp":
+        case "PageUp":
             overscanSize += .01;
             break;
 
-        case "ArrowDown":
+        case "PageDown":
             overscanSize -= .01;
             break;
         case "ArrowLeft":
@@ -407,11 +417,19 @@ function overscan(key) {
         case "ArrowRight":
             horShift += 1;
             break;
+        case "ArrowUp":
+            verShift -= 1;
+            break;
+        case "ArrowDown":
+            verShift += 1;
+            break;
     }
     localStorage.setItem('overscan', overscanSize);
     localStorage.setItem('horizontalShift', horShift);
+    localStorage.setItem('verticakShift', verShift);
     vidWindow.style.transform = "scale(" + overscanSize + ")";
     vidWindow.style.marginLeft = horShift + "px";
+    vidWindow.style.marginTop = verShift + "px";
 
 
 }
@@ -510,7 +528,7 @@ function loadChannels() {
     { name: 'Ch: 25 - Scifi Movies', list: 'PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe', episodes: 73, randPoint: 0 },
     { name: "Ch: 26 - Horror/SciFi Movies", list: 'PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL', episodes: 200, randPoint: 0 },
     { name: "Ch: 27 - Seaonal Flixs", list: 'PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S', episodes: 7, randPoint: 0 },
-    
+
 
     ];
     return array;
