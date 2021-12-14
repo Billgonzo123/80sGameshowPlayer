@@ -510,7 +510,7 @@ function loadChannels() {
     { name: "Ch: 6 - Cartoons Forever", list: 'PLo6LMGdjaTzI76fH66OWjpBJw0cleQGC6', episodes: 200, randPoint: 0 },
     { name: "Ch: 7 - WB Cartoons", list: 'PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI', episodes: 200, randPoint: 0 },
     { name: 'Ch: 8 - Toonami Swim', list: 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q', episodes: 8, randPoint: 1 },
-    { name: 'Ch: 9 - Saturday Morning', list: 'PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7', episodes: 11, randPoint: 1 },
+    { name: 'Ch: 9 - Saturday Morning', list: 'PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7', episodes: 18, randPoint: 1 },
     { name: 'Ch: 10 - Kablam', list: 'PLUiXHUbyt3otcSGKiOCzZn4pFalAt3sFS', episodes: 48, randPoint: 0 },
     { name: 'Ch: 11 - Recess', list: 'PL3panSrIeiNJZN_qyGZvhvtI4R-xKsEW8', episodes: 135, randPoint: 0 },
     { name: 'Ch: 12 - Pepper Ann', list: 'PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z', episodes: 160, randPoint: 0 },
