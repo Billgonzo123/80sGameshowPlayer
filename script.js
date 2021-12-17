@@ -74,6 +74,7 @@ let rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes));
 If there are no more random numbers to select, it clears the array of prev channels and starts over */
 
 //load saved prev generated channels. But first check if one exists. If it dosn't, create an empty one
+//The firat value stored is the playlist index.
 if (!localStorage.getItem(num)) { localStorage.setItem(num, JSON.stringify([0])); };
 
 pageData = JSON.parse(localStorage.getItem(num));
@@ -532,10 +533,10 @@ function refresh() {
 function loadChannels() {
     const array = [{ name: 'Ch: 1 - Gameshows80', list: ['PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe'], episodes: 194, randPoint: 0 },
     { name: 'Ch: 2 - Classic Gameshows', list: ['PLMK_6ky6NNPquQ8vAnN-qCIoHdW1lwpRq'], episodes: 200, randPoint: 0 },
-    { name: 'Ch: 3 - Price Is Right', list: ['PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 3 - Price Is Right', list: ['PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5'], episodes: 200, randPoint: 0 },
     { name: 'Ch: 4 - Jeopardy!', list: ['PLAzwm-_ugsYC6SsJMjKbzvE2nk0307yIn'], episodes: 200, randPoint: 0 },
-    { name: "Ch: 5 - Who's Line", list: ['PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn'], episodes: 200, randPoint: 0 },
-    { name: "Ch: 6 - Cartoons Forever", list: ['PLo6LMGdjaTzI76fH66OWjpBJw0cleQGC6'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 5 - Whose Line", list: ['PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn', 'PLo6LMGdjaTzKN9VsQviEkw_L8xs_LjmZz', 'PLo6LMGdjaTzJwWO5RHYx3v4_Zl8gAbvrE'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 6 - Cartoons Forever", list: ['PLhNec9tcvCfBir8KQxopOdDGxTMsXtj3Z', 'PLo6LMGdjaTzI76fH66OWjpBJw0cleQGC6'], episodes: 200, randPoint: 0 },
     { name: "Ch: 7 - WB Cartoons", list: ['PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI'], episodes: 200, randPoint: 0 },
     { name: 'Ch: 8 - Toonami Swim', list: ['PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q'], episodes: 8, randPoint: 1 },
     { name: 'Ch: 9 - Saturday Morning', list: ['PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7'], episodes: 17, randPoint: 1 },
@@ -557,7 +558,7 @@ function loadChannels() {
     { name: 'Ch: 25 - Scifi Movies', list: ['PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe'], episodes: 73, randPoint: 0 },
     { name: "Ch: 26 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
     { name: "Ch: 27 - Seaonal Flixs", list: ['PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S'], episodes: 7, randPoint: 0 },
-    { name: "Ch: 28 - MultiTest", list: ['PLo6LMGdjaTzJ4bLJqDG1SEheI4HKDfIqX', 'PLo6LMGdjaTzLA3eD8xe3bMq1JZGguK4P6'], episodes: 4, randPoint: 0 },
+   
 
 
 
