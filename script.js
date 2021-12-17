@@ -74,10 +74,11 @@ let rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes));
 If there are no more random numbers to select, it clears the array of prev channels and starts over */
 
 //load saved prev generated channels. But first check if one exists. If it dosn't, create an empty one
-if (!localStorage.getItem(num)) { localStorage.setItem(num, JSON.stringify([num])); };
+if (!localStorage.getItem(num)) { localStorage.setItem(num, JSON.stringify([0])); };
 
 pageData = JSON.parse(localStorage.getItem(num));
-if (pageData.length-1 >= channel[num].episodes) { nextPlaylist();}
+
+if (pageData.length - 1 >= channel[num].episodes) { nextPlaylist(); }
 //check each prev ch with the current generated ch
 for (let i = 1; i < pageData.length; i++) {
     //if the ch has been generated before, make new number and start over (i=0)
@@ -130,7 +131,7 @@ function onYouTubeIframeAPIReady() {
             controls: 0,
             modestbranding: 1,
             listType: 'playlist',
-            list: channel[num].list,
+            list: channel[num].list[pageData[0]],
             index: epNum + 1, //this always subtracts one
             // loop: 1, //llops the playlist
             autoplay: true,
@@ -144,7 +145,7 @@ function onYouTubeIframeAPIReady() {
 
                 function (event) {
 
-                   
+
                     vidWindow = document.querySelector('#player');
                     overscanSize = parseFloat(localStorage.getItem('overscan'));
                     vidWindow.style.transform = "scale(" + overscanSize + ")";
@@ -158,8 +159,8 @@ function onYouTubeIframeAPIReady() {
 
                     console.log("RndNumber: ", rndEpisodeNum, "realEpNumber: ", epNum);
                     console.log("Ep running: ", player.getPlaylistIndex());
-///check if all videos played
-                    if (pageData.length -1 >= channel[num].episodes) {
+                    ///check if all videos played
+                    if (pageData.length - 1 >= channel[num].episodes) {
                         nextPlaylist();
                     }
                     //if the video is unavailable or blocked index will return -1
@@ -218,8 +219,8 @@ function onYouTubeIframeAPIReady() {
                 console.log("Last Ep: ", player.getPlaylistIndex() - 1, epNum);
                 console.log("New Ep: ", player.getPlaylistIndex());
 
-               
-              
+
+
 
                 //checks if current episode is the last in the playlist and sets flag if true
                 //  if (player.getPlaylistIndex() === channel[num].episodes){ lastInPlaylist = 1; console.log('This is the lastepisode in playlist');}
@@ -246,7 +247,7 @@ function onYouTubeIframeAPIReady() {
                         //checks if rndEpisodeNum is the last possible number and resets the array if it is
                         if (pageData.length - 1 >= channel[num].episodes) {
                             nextPlaylist()
-                            
+
                         }
                         clearTimeout(j);
                     }, 500);
@@ -522,34 +523,34 @@ function refresh() {
 
 //Turn out Youtube iFrame API can only qure 200 videos at a time. So i will have to limit playlists to 200 and find a workaround
 function loadChannels() {
-    const array = [{ name: 'Ch: 1 - Gameshows80', list: 'PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe', episodes: 194, randPoint: 0 },
-    { name: 'Ch: 2 - Classic Gameshows', list: 'PLMK_6ky6NNPquQ8vAnN-qCIoHdW1lwpRq', episodes: 200, randPoint: 0 },
-    { name: 'Ch: 3 - Price Is Right', list: 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', episodes: 200, randPoint: 0 },
-    { name: 'Ch: 4 - Jeopardy!', list: 'PLAzwm-_ugsYC6SsJMjKbzvE2nk0307yIn', episodes: 200, randPoint: 0 },
-    { name: "Ch: 5 - Who's Line", list: 'PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn', episodes: 200, randPoint: 0 },
-    { name: "Ch: 6 - Cartoons Forever", list: 'PLo6LMGdjaTzI76fH66OWjpBJw0cleQGC6', episodes: 200, randPoint: 0 },
-    { name: "Ch: 7 - WB Cartoons", list: 'PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI', episodes: 200, randPoint: 0 },
-    { name: 'Ch: 8 - Toonami Swim', list: 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q', episodes: 8, randPoint: 1 },
-    { name: 'Ch: 9 - Saturday Morning', list: 'PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7', episodes: 17, randPoint: 1 },
-    { name: 'Ch: 10 - Kablam', list: 'PLUiXHUbyt3otcSGKiOCzZn4pFalAt3sFS', episodes: 48, randPoint: 0 },
-    { name: 'Ch: 11 - Recess', list: 'PL3panSrIeiNJZN_qyGZvhvtI4R-xKsEW8', episodes: 135, randPoint: 0 },
-    { name: 'Ch: 12 - Pepper Ann', list: 'PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z', episodes: 160, randPoint: 0 },
-    { name: "Ch: 13 - 80's TV", list: 'PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT', episodes: 200, randPoint: 0 },
-    { name: "Ch: 14 - 90's TV", list: 'PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ', episodes: 200, randPoint: 0 },
-    { name: 'Ch: 15 - Computer Chronicles', list: 'PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL', episodes: 200, randPoint: 0 },
-    { name: 'Ch: 16 - TechTV', list: 'PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8', episodes: 1, randPoint: 1 }, //no longer works
-    { name: 'Ch: 17 - Xplay', list: 'PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu', episodes: 200, randPoint: 0 },
-    { name: 'Ch: 18 - Sitcoms Make Me Cring', list: 'PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p', episodes: 463, randPoint: 0 },
-    { name: 'Ch: 19 - MTV', list: 'PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8', episodes: 200, randPoint: 0 },
-    { name: 'Ch: 20 - MST 3000', list: 'PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l', episodes: 177, randPoint: 0 },
-    { name: "Ch: 21 - 90's B-Movies", list: 'PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2', episodes: 200, randPoint: 0 },
-    { name: "Ch: 22 - 80's B-Movies", list: 'PLKxdKKLx3iRQbB2m8NkfX6e-PwMvNI-Wl', episodes: 200, randPoint: 0 },
-    { name: "Ch: 23 - Free Movies", list: 'PLHPTxTxtC0ibVZrT2_WKWUl2SAxsKuKwx', episodes: 200, randPoint: 0 },
-    { name: "Ch: 24 - Vintage Movies", list: 'PLyMSG-Q0Oh8cr6AG1jbptCGW5P6n-_Szz', episodes: 129, randPoint: 0 },
-    { name: 'Ch: 25 - Scifi Movies', list: 'PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe', episodes: 73, randPoint: 0 },
-    { name: "Ch: 26 - Horror/SciFi Movies", list: 'PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL', episodes: 200, randPoint: 0 },
-    { name: "Ch: 27 - Seaonal Flixs", list: 'PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S', episodes: 7, randPoint: 0 },
-    { name: "Ch: 28 - MultiTest", list: 'PLo6LMGdjaTzJ4bLJqDG1SEheI4HKDfIqX', episodes: 4, randPoint: 0 },
+    const array = [{ name: 'Ch: 1 - Gameshows80', list: ['PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe'], episodes: 194, randPoint: 0 },
+    { name: 'Ch: 2 - Classic Gameshows', list: ['PLMK_6ky6NNPquQ8vAnN-qCIoHdW1lwpRq'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 3 - Price Is Right', list: ['PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 4 - Jeopardy!', list: ['PLAzwm-_ugsYC6SsJMjKbzvE2nk0307yIn'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 5 - Who's Line", list: ['PLDyueIBpFFG6W_2txiVyc5VYindbBFjSn'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 6 - Cartoons Forever", list: ['PLo6LMGdjaTzI76fH66OWjpBJw0cleQGC6'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 7 - WB Cartoons", list: ['PLJYf0JdTApCofHRdo-RXjd2uHUl1551oI'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 8 - Toonami Swim', list: ['PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q'], episodes: 8, randPoint: 1 },
+    { name: 'Ch: 9 - Saturday Morning', list: ['PLo6LMGdjaTzIaer3XW-Hw9zalxpnFBPS7'], episodes: 17, randPoint: 1 },
+    { name: 'Ch: 10 - Kablam', list: ['PLUiXHUbyt3otcSGKiOCzZn4pFalAt3sFS'], episodes: 48, randPoint: 0 },
+    { name: 'Ch: 11 - Recess', list: ['PL3panSrIeiNJZN_qyGZvhvtI4R-xKsEW8'], episodes: 135, randPoint: 0 },
+    { name: 'Ch: 12 - Pepper Ann', list: ['PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z'], episodes: 160, randPoint: 0 },
+    { name: "Ch: 13 - 80's TV", list: ['PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 14 - 90's TV", list: ['PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 15 - Computer Chronicles', list: ['PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 16 - TechTV', list: ['PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8'], episodes: 1, randPoint: 1 }, //no longer works
+    { name: 'Ch: 17 - Xplay', list: ['PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 18 - Sitcoms Make Me Cring', list: ['PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p'], episodes: 463, randPoint: 0 },
+    { name: 'Ch: 19 - MTV', list: ['PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 20 - MST 3000', list: ['PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l'], episodes: 177, randPoint: 0 },
+    { name: "Ch: 21 - 90's B-Movies", list: ['PLKxdKKLx3iRTyfWK8SQghHUGHfOTGhRl2'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 22 - 80's B-Movies", list: ['PLKxdKKLx3iRQbB2m8NkfX6e-PwMvNI-Wl'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 23 - Free Movies", list: ['PLHPTxTxtC0ibVZrT2_WKWUl2SAxsKuKwx'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 24 - Vintage Movies", list: ['PLyMSG-Q0Oh8cr6AG1jbptCGW5P6n-_Szz'], episodes: 129, randPoint: 0 },
+    { name: 'Ch: 25 - Scifi Movies', list: ['PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe'], episodes: 73, randPoint: 0 },
+    { name: "Ch: 26 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 27 - Seaonal Flixs", list: ['PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S'], episodes: 7, randPoint: 0 },
+    { name: "Ch: 28 - MultiTest", list: ['PLo6LMGdjaTzJ4bLJqDG1SEheI4HKDfIqX', 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q'], episodes: 4, randPoint: 0 },
 
 
 
@@ -558,9 +559,22 @@ function loadChannels() {
     return array;
 }
 
-function nextPlaylist(){
-    pageData =[num];
-    localStorage.setItem(num, JSON.stringify(pageData));
-    console.log("PLAYLIST END. RUNNING NEXT PLAYLIST FUNCTION");
-    refresh();
+function nextPlaylist() {
+    let currList = pageData[0];
+    if (currList >= channel[num].list.length - 1) {
+        pageData = [0];
+        localStorage.setItem(num, JSON.stringify(pageData));
+        console.log("PLAYLIST END. RUNNING NEXT PLAYLIST FUNCTION");
+        refresh();
+    }
+    else {
+        currList++;
+        pageData = [currList];
+        localStorage.setItem(num, JSON.stringify(pageData));
+        console.log("PLAYLIST END. RUNNING NEXT PLAYLIST FUNCTION");
+        refresh();
+    }
+
+
+
 }
