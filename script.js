@@ -234,7 +234,7 @@ function onYouTubeIframeAPIReady() {
                 }
                 ///epNum keeps track of episode updates
                 if (epNum < player.getPlaylistIndex()) {
-
+                 
                     epNum = player.getPlaylistIndex();
                     //waits for 2secs before saving prev video to let player have time to switch states
                     let j = setTimeout(function () {
@@ -243,6 +243,13 @@ function onYouTubeIframeAPIReady() {
 
                         ///and save the array to local storage (each channel gets its own local storage slot)
                         localStorage.setItem(num, JSON.stringify(pageData));
+
+                        for (let i = 1; i < pageData.length; i++) {
+                            //if the ch has been generated before, make new number and start over (i=0)
+                            if (pageData[i] === player.getPlaylistIndex()) {
+                                refresh();
+                            }
+                        }
 
                         //checks if rndEpisodeNum is the last possible number and resets the array if it is
                         if (pageData.length - 1 >= channel[num].episodes) {
@@ -550,7 +557,7 @@ function loadChannels() {
     { name: 'Ch: 25 - Scifi Movies', list: ['PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe'], episodes: 73, randPoint: 0 },
     { name: "Ch: 26 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
     { name: "Ch: 27 - Seaonal Flixs", list: ['PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S'], episodes: 7, randPoint: 0 },
-    { name: "Ch: 28 - MultiTest", list: ['PLo6LMGdjaTzJ4bLJqDG1SEheI4HKDfIqX', 'PLo6LMGdjaTzIQMz6eUB-Y74F87PRvvi_q'], episodes: 4, randPoint: 0 },
+    { name: "Ch: 28 - MultiTest", list: ['PLo6LMGdjaTzJ4bLJqDG1SEheI4HKDfIqX', 'PLo6LMGdjaTzLA3eD8xe3bMq1JZGguK4P6'], episodes: 4, randPoint: 0 },
 
 
 
