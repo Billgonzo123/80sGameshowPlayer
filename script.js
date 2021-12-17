@@ -2,7 +2,7 @@
 let channelBuffer = 0;
 let n = 0;
 let on = 1; //if the screen is "on" used for fake shutoff
-
+let lastInPlaylist = 0; //flag for when last episode
 let volEl = document.getElementById('volume');
 volEl.style.display = 'none';
 let vol = 50;
@@ -77,14 +77,14 @@ If there are no more random numbers to select, it clears the array of prev chann
 if (!localStorage.getItem(num)) { localStorage.setItem(num, JSON.stringify([num])); };
 
 pageData = JSON.parse(localStorage.getItem(num));
-
+if (pageData.length-1 >= channel[num].episodes) { nextPlaylist();}
 //check each prev ch with the current generated ch
 for (let i = 1; i < pageData.length; i++) {
     //if the ch has been generated before, make new number and start over (i=0)
     if (pageData[i] === rndEpisodeNum) {
         rndEpisodeNum = Math.floor((Math.random() * channel[num].episodes));
         //start for loop over
-        i = 0;
+        i = 1;
     }
 }
 
@@ -132,7 +132,7 @@ function onYouTubeIframeAPIReady() {
             listType: 'playlist',
             list: channel[num].list,
             index: epNum + 1, //this always subtracts one
-
+            // loop: 1, //llops the playlist
             autoplay: true,
             mute: 0,
 
@@ -144,7 +144,7 @@ function onYouTubeIframeAPIReady() {
 
                 function (event) {
 
-
+                   
                     vidWindow = document.querySelector('#player');
                     overscanSize = parseFloat(localStorage.getItem('overscan'));
                     vidWindow.style.transform = "scale(" + overscanSize + ")";
@@ -158,6 +158,10 @@ function onYouTubeIframeAPIReady() {
 
                     console.log("RndNumber: ", rndEpisodeNum, "realEpNumber: ", epNum);
                     console.log("Ep running: ", player.getPlaylistIndex());
+///check if all videos played
+                    if (pageData.length -1 >= channel[num].episodes) {
+                        nextPlaylist();
+                    }
                     //if the video is unavailable or blocked index will return -1
                     if (player.getPlaylistIndex() < 0) {
                         //if video is an error, push the index number represented my rndEpisodeNum-1
@@ -209,9 +213,24 @@ function onYouTubeIframeAPIReady() {
 
 
             'onStateChange': function (event) {
+                console.log(channel[num].episodes);
                 console.log("original Rnd Ch: ", rndEpisodeNum);
                 console.log("Last Ep: ", player.getPlaylistIndex() - 1, epNum);
                 console.log("New Ep: ", player.getPlaylistIndex());
+
+               
+              
+
+                //checks if current episode is the last in the playlist and sets flag if true
+                //  if (player.getPlaylistIndex() === channel[num].episodes){ lastInPlaylist = 1; console.log('This is the lastepisode in playlist');}
+                if (player.getPlayerState() == 0) {
+                    console.log("Playlist ended");
+                    pageData.push(player.getPlaylistIndex());
+
+                    ///and save the array to local storage (each channel gets its own local storage slot)
+                    localStorage.setItem(num, JSON.stringify(pageData));
+                    refresh();
+                }
                 ///epNum keeps track of episode updates
                 if (epNum < player.getPlaylistIndex()) {
 
@@ -220,16 +239,17 @@ function onYouTubeIframeAPIReady() {
                     let j = setTimeout(function () {
                         //add last episode to watched list array (pageData)
                         pageData.push(player.getPlaylistIndex() - 1);
+
                         ///and save the array to local storage (each channel gets its own local storage slot)
                         localStorage.setItem(num, JSON.stringify(pageData));
 
                         //checks if rndEpisodeNum is the last possible number and resets the array if it is
-                        if (pageData.length >= channel[num].episodes+2) {
-                            pageData = [num];
-                            localStorage.setItem(num, JSON.stringify(pageData));
+                        if (pageData.length - 1 >= channel[num].episodes) {
+                            nextPlaylist()
+                            
                         }
                         clearTimeout(j);
-                    }, 2000);
+                    }, 500);
                 }
             }
         }
@@ -529,11 +549,18 @@ function loadChannels() {
     { name: 'Ch: 25 - Scifi Movies', list: 'PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe', episodes: 73, randPoint: 0 },
     { name: "Ch: 26 - Horror/SciFi Movies", list: 'PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL', episodes: 200, randPoint: 0 },
     { name: "Ch: 27 - Seaonal Flixs", list: 'PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S', episodes: 7, randPoint: 0 },
-    { name: "Ch: 28 - Mups Xmas Carl", list: 'PLnfTpIrAsxxWNjZOjyZCMr70G2PdTAlsQ', episodes: 1, randPoint: 0 },
+    { name: "Ch: 28 - MultiTest", list: 'PLo6LMGdjaTzJ4bLJqDG1SEheI4HKDfIqX', episodes: 4, randPoint: 0 },
 
-    
+
 
 
     ];
     return array;
+}
+
+function nextPlaylist(){
+    pageData =[num];
+    localStorage.setItem(num, JSON.stringify(pageData));
+    console.log("PLAYLIST END. RUNNING NEXT PLAYLIST FUNCTION");
+    refresh();
 }
