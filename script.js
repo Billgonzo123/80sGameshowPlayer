@@ -11,10 +11,14 @@ const sndSrc = document.getElementById('soundSrc');
 const sound = document.getElementById('audioPlayer');
 const channelEntry = document.getElementById('chEntry');
 channelEntry.style.display = 'none';
+const listDisplayDiv = document.getElementById("chListDisp");
 const listDisplay = document.getElementById('chList');
 const listDisplay2 = document.getElementById('chList2');
-listDisplay.style.display = 'none';
-listDisplay2.style.display = 'none';
+const controlDisplay = document.getElementById("controlsScreen");
+controlDisplay.style.display = "none";
+listDisplayDiv.style.display = "none";
+
+
 const chDisp = document.getElementById('channelNameDisplay');
 chDisp.style.display = "block";
 
@@ -56,6 +60,10 @@ for (i = 15; i < channel.length; i++) {
     li.textContent = channel[i].name;
     listDisplay2.append(li);
 }
+const menuShortcutEl = document.createElement("p");
+menuShortcutEl.id = "menuShortcut";
+menuShortcutEl.textContent = "Enter 00 for controls";
+listDisplayDiv.append(menuShortcutEl);
 ///////////////////////////////
 
 let beginPlace = 0;
@@ -299,21 +307,22 @@ let element = document.addEventListener('keydown', function (event) {
         switch (name) {
             case '+':
             case 'PageUp':
-                if (listDisplay.style.display == "block") { overscan(name); } else {
+                if (listDisplayDiv.style.display== "block") { overscan(name); } else {
                     if (num >= channel.length - 1) { num = 0; refresh(); } else { num++; refresh(); }
                 }
                 break;
             case '-':
             case 'PageDown':
-                if (listDisplay.style.display == "block") { overscan(name); } else {
+                if (listDisplayDiv.style.display == "block") { overscan(name); } else {
                     if (num <= 0) { num = channel.length - 1; refresh(); } else { num--; refresh(); }
                 }
                 break;
             case '.':
             case ',':
             case 'Backspace':
-                if (listDisplay.style.display === "none") { chDisp.style.display = "block"; listDisplay.style.display = 'block'; listDisplay2.style.display = 'block'; }
-                else { chDisp.style.display = "none"; listDisplay.style.display = 'none'; listDisplay2.style.display = 'none'; }
+                if (listDisplayDiv.style.display === "none") { chDisp.style.display = "block"; listDisplayDiv.style.display = 'block';  }
+                else { chDisp.style.display = "none"; listDisplayDiv.style.display = 'none';  }
+                controlDisplay.style.display = "none";
                 break;
             case '*':
                 volumeUp(name);
@@ -325,7 +334,7 @@ let element = document.addEventListener('keydown', function (event) {
             case "ArrowDown":
             case "ArrowLeft":
             case "ArrowRight":
-                if (listDisplay.style.display == "block") { overscan(name); }
+                if (listDisplayDiv.style.display == "block") { overscan(name); }
                 break;
             case "End":
                 pageData.push(rndEpisodeNum);
@@ -336,6 +345,9 @@ let element = document.addEventListener('keydown', function (event) {
             case "Home":
                 screenOff();
                 break;
+            case "Insert":
+                refresh();    
+            break;
 
 
 
@@ -364,7 +376,7 @@ let element = document.addEventListener('keydown', function (event) {
             if (nn >= channel.length || nn < 0) {
 
                 //if the chList is open, some number inputs can be used as special commands
-                if (listDisplay.style.display == "block") {
+                if (listDisplayDiv.style.display == "block") {
                     //nn is decremented before hand so the input will be one less (ie, 99=98 or 00=-1)
                     switch (nn) {
                         case 98:
@@ -377,12 +389,18 @@ let element = document.addEventListener('keydown', function (event) {
                             channelEntry.textContent = 'All Memory Cleared';
                             n = 0;
                             break;
+                        case -1:
+                             controlDisplay.style.display = "block";
+                            channelEntry.textContent = '';
+                            n=0;
+                            break;
                         default:
                             channelEntry.style.display = 'none';
                             channelEntry.textContent = '';
                             n = 0;
                             break;
                     }
+                    
                 }
                 else {
                     channelEntry.style.display = 'none';
