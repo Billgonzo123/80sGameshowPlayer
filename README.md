@@ -49,7 +49,6 @@ Furthermore, and most importantly, you MUST configure your browser to allow auto
 |Direction Keys| Horizontal/Vertical Shift|
 
 Note: Memory contains all previously watched episodes which are excluded when genrating random episodes.  
-The memory resets automatically when all episodes in a channel have been viewed
 ### ***Due to recent bug fixes and added features you may need to clear your memory (see System Control above)
 ### *** To keep your memory intact you will need to edit localStorage through Inspector and change the first value of every numbered key to a zero. 
 
