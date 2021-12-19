@@ -96,10 +96,10 @@ white-space: pre;
  background-color: rgb(100, 98, 98);
  padding: 3px 5px 3px 5px;
  font-family: OCR A Std, monospace;
- font-size: 28px;
+ font-size: 18px;
  position: fixed;
- top:10px;
- left:80px;
+ top:90px;
+ left:170px;
  animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
  z-index: 9999999;
 }
