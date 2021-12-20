@@ -566,7 +566,7 @@ function loadChannels() {
     { name: 'Ch: 15 - Computer Chronicles', list: ['PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL', 'PLo6LMGdjaTzJ-1c0eMes7t3kqDaJARw0S',
     'PLo6LMGdjaTzKTYLTLmaF3rhlQpPaqC6jd'], episodes: 200, randPoint: 0 },
     { name: 'Ch: 16 - TechTV', list: ['PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8'], episodes: 1, randPoint: 1 }, 
-    { name: 'Ch: 17 - Xplay', list: ['PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 17 - Xplay', list: ['PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu','PLo6LMGdjaTzLBjKmMxHWuTWwXleScacyA'], episodes: 150, randPoint: 0 },
     { name: 'Ch: 18 - Sitcoms Make Me Cring', list: ['PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p'], episodes: 463, randPoint: 0 },
     { name: 'Ch: 19 - MTV', list: ['PLId5xJ_xHV-k3ZgNju2ifMLct7-8uRKr8'], episodes: 200, randPoint: 0 },
     { name: 'Ch: 20 - MST 3000', list: ['PLDXsAHvr3XNPn8PfqYpU7NBHWOzdow89l'], episodes: 177, randPoint: 0 },
