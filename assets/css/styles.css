@@ -87,7 +87,7 @@ html{
     font-family: OCR A Std, monospace;
     position: fixed;
     top:380px;
-    left:250px;
+    left:190px;
     animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
     z-index: 999999;
    }

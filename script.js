@@ -1,4 +1,5 @@
 
+const ver = "1.2.13";
 let channelBuffer = 0;
 let n = 0;
 let on = 1; //if the screen is "on" used for fake shutoff
@@ -62,7 +63,7 @@ for (i = 15; i < channel.length; i++) {
 }
 const menuShortcutEl = document.createElement("p");
 menuShortcutEl.id = "menuShortcut";
-menuShortcutEl.textContent = "Enter 00 for controls";
+menuShortcutEl.textContent = "Enter 00 for controls (v" + ver +")";
 listDisplayDiv.append(menuShortcutEl);
 ///////////////////////////////
 
