@@ -16,7 +16,7 @@ html{
 }
 #channelNameDisplay{
  color:rgba(0, 182, 0,.9);
- background-color: rgba(100, 98, 98, 0.7);
+ background-color: rgba(37, 37, 37, 0.7);
  padding: 3px 5px 3px 5px;
  font-family: OCR A Std, monospace;
  position: fixed;
@@ -81,7 +81,7 @@ html{
    #menuShortcut{
        display: block;
     color:rgba(0, 182, 0,.9);
-    background-color: rgb(100, 98, 98);
+    background-color: rgb(51, 49, 49);
     padding: 3px 5px 3px 5px;
     font-family: OCR A Std, monospace;
     position: fixed;
@@ -93,14 +93,14 @@ html{
    #controlsScreen{
 white-space: pre;
  color:rgba(0, 182, 0,.9);
- background-color: rgb(100, 98, 98);
+ background-color: rgb(37, 36, 36);
  padding: 3px 5px 3px 5px;
  font-family: OCR A Std, monospace;
  font-size: 18px;
  position: fixed;
  top:90px;
  left:170px;
- animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
+
  z-index: 9999999;
 }
 @keyframes glitch {
