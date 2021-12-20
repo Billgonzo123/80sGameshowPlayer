@@ -563,7 +563,8 @@ function loadChannels() {
     { name: 'Ch: 12 - Pepper Ann', list: ['PLLhOnau-tupR82ubLjcY2tQNlUMGTn__z'], episodes: 160, randPoint: 0 },
     { name: "Ch: 13 - 80's TV", list: ['PLGS5pi29Z6qFmRfb4q9RPURwKK0xMk6IT'], episodes: 200, randPoint: 0 },
     { name: "Ch: 14 - 90's TV", list: ['PLo6LMGdjaTzLxpgNhSiCjzwMPXRLJjwaJ'], episodes: 200, randPoint: 0 },
-    { name: 'Ch: 15 - Computer Chronicles', list: ['PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL'], episodes: 200, randPoint: 0 },
+    { name: 'Ch: 15 - Computer Chronicles', list: ['PLmM8tWTshxQBws_fIdi5qH63rZxrlB0qL', 'PLo6LMGdjaTzJ-1c0eMes7t3kqDaJARw0S',
+    'PLo6LMGdjaTzKTYLTLmaF3rhlQpPaqC6jd'], episodes: 200, randPoint: 0 },
     { name: 'Ch: 16 - TechTV', list: ['PLo6LMGdjaTzKuVaftTtnSPfMOOlFhORm8'], episodes: 1, randPoint: 1 }, 
     { name: 'Ch: 17 - Xplay', list: ['PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu'], episodes: 200, randPoint: 0 },
     { name: 'Ch: 18 - Sitcoms Make Me Cring', list: ['PLGk6y7qjGXVt-tH7E0P2CEedDGJp-fT1p'], episodes: 463, randPoint: 0 },
@@ -576,6 +577,8 @@ function loadChannels() {
     { name: 'Ch: 25 - Scifi Movies', list: ['PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe'], episodes: 73, randPoint: 0 },
     { name: "Ch: 26 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
     { name: "Ch: 27 - Seaonal Flixs", list: ['PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S'], episodes: 7, randPoint: 0 },
+
+    527
    
 
 
