@@ -322,7 +322,7 @@ let element = document.addEventListener('keydown', function (event) {
             case ',':
             case 'Backspace':
                 if (listDisplayDiv.style.display === "none") { chDisp.style.display = "block"; listDisplayDiv.style.display = 'block';  }
-                else { chDisp.style.display = "none"; listDisplayDiv.style.display = 'none';  }
+                else { chDisp.style.display = "none"; channelEntry.style.display = "none"; listDisplayDiv.style.display = 'none';  }
                 controlDisplay.style.display = "none";
                 break;
             case '*':
@@ -415,8 +415,9 @@ let element = document.addEventListener('keydown', function (event) {
                     location.reload();
                 }, 500)
             }
+            
         }
-
+        
     }
 
 
