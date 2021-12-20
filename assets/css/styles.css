@@ -80,6 +80,7 @@ html{
 
    #menuShortcut{
        display: block;
+       font-size: 22px;
     color:rgba(0, 182, 0,.9);
     background-color: rgb(51, 49, 49);
     padding: 3px 5px 3px 5px;
