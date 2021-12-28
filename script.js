@@ -579,7 +579,10 @@ function loadChannels() {
     { name: 'Ch: 25 - Scifi Movies', list: ['PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe'], episodes: 73, randPoint: 0 },
     { name: "Ch: 26 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
     { name: "Ch: 27 - Seaonal Flixs", list: ['PLo6LMGdjaTzJzG8GLIcleCBci8R8ZN54S'], episodes: 7, randPoint: 0 },
-
+    { name: "Ch: 28 - NFL 80s", list: ['PLAr_WbjGaCm5laqRScaYFlNiDSrLLW4rn'], episodes: 200, randPoint: 0 },
+    { name: "Ch: 29 - Vintage TV", list: ['PLVPqan6x_34F-M2lCiaTzRSX6jxyQbXcL'], episodes: 200, randPoint: 0 },
+    
+    
 
    
 
