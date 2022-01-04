@@ -22,7 +22,7 @@ html{
  position: fixed;
  top:30px;
  left:80px;
- animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
+ animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;
  z-index: 9999;
 }
 
@@ -34,7 +34,7 @@ html{
     position: fixed;
     top:350px;
     left:130px;
-    animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
+    animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;
     z-index: 9999;
    }
 
@@ -50,7 +50,7 @@ html{
     top:69px;
     left:75px;
     z-index: 9997;
-    /*animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;*/
+    /*animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;*/
    }
    
 #chList2{
@@ -65,7 +65,7 @@ html{
     top:69px;
     left:360px;
     z-index: 9998;
-    /*animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;*/
+    /*animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;*/
    }
 
    #chEntry{
@@ -76,7 +76,7 @@ html{
     position: fixed;
     top:30px;
     left:80px;
-    animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
+    animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;
     z-index: 999999;
    }
 
@@ -90,7 +90,7 @@ html{
     position: fixed;
     top:400px;
     left:190px;
-    animation: glitch 66ms ease infinite,pulse ease 200ms  infinite;
+    animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;
     z-index: 999999;
    }
    #controlsScreen{
