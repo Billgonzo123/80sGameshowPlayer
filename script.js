@@ -1,5 +1,5 @@
 
-const ver = "1.2.13";
+const ver = "1.2.14";
 let channelBuffer = 0;
 let n = 0;
 let on = 1; //if the screen is "on" used for fake shutoff
