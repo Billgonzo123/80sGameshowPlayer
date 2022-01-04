@@ -48,7 +48,7 @@ html{
     font-family: OCR A Std, monospace;
     position: fixed;
     top:69px;
-    left:75px;
+    left:50px;
     z-index: 9997;
     /*animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;*/
    }
@@ -63,7 +63,7 @@ html{
     font-family: OCR A Std, monospace;
     position: fixed;
     top:69px;
-    left:360px;
+    left:340px;
     z-index: 9998;
     /*animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;*/
    }
