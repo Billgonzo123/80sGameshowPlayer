@@ -90,7 +90,6 @@ html{
     position: fixed;
     top:400px;
     left:190px;
-    animation: glitch 33ms ease infinite,pulse ease 200ms  infinite;
     z-index: 999999;
    }
    #controlsScreen{
